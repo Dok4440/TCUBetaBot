@@ -45,7 +45,7 @@ echo "Downloading TCU, please wait."
 echo ""
 echo "This process usually takes about 15 seconds."
 sleep 5s
-git clone -b 1.9 --recursive --depth 1 https://gitlab.com/Kwoth/NadekoBot
+git clone -b 1.0 --recursive --depth 1 https://gitlab.com/Dok4440/TCUBetaBot
 clear
 echo "TCU downloaded."
 
