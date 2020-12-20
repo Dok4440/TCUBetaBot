@@ -1,12 +1,6 @@
-[![Discord](https://discordapp.com/api/guilds/117523346618318850/widget.png)](https://discord.gg/nadekobot)
-[![Documentation Status](https://readthedocs.org/projects/nadekobot/badge/?version=latest)](http://nadekobot.readthedocs.io/en/latest/?badge=latest)
-[![Discord Bots](https://discordbots.org/api/widget/status/116275390695079945.svg)](https://discordbots.org/bot/116275390695079945)
-[![nadeko0](https://cdn.discordapp.com/attachments/266240393639755778/281920716809699328/part1.png)](https://nadeko.bot/)
-[![nadeko1](https://cdn.discordapp.com/attachments/266240393639755778/281920134967328768/part2.png)](https://discordapp.com/oauth2/authorize?client_id=170254782546575360&scope=bot&permissions=66186303)
-[![nadeko2](https://cdn.discordapp.com/attachments/266240393639755778/281920161311883264/part3.png)](https://nadekobot.me/commands)
+# Tea Cup Utilities  
+Tea Cup Utilities is a **Nadeko-based** Discord bot hosted by Dok#4440. To utilise the bot you have, unlike other bots, 2 options.   
+1. You use the "public" bot, which is the one you simply invite through a [link](https://discord.com/api/oauth2/authorize?client_id=730786942416978021&permissions=8&scope=bot)
+2. Self-hosted TCU, which is the source code you download on **this repo** and run on your own pc! Self-hosting makes you the bot's owner (which is not the same as server owner) and gives you access to bot owner-only features, like music, logs, currency generation, etc; or customizing the bot's name, avatar, playing status and more.    
 
-## For Updates, Help and Guidelines
 
-| [![discord](https://cdn.discordapp.com/attachments/266240393639755778/281920766490968064/discord.png)](https://discord.gg/nadekobot) | [![Wiki](https://cdn.discordapp.com/attachments/266240393639755778/281920793330581506/datcord.png)](http://nadekobot.readthedocs.io/en/latest/)
-| --- | --- |
-| **Join my Discord server for help.** | **Read the Docs for self-hosting.** |
