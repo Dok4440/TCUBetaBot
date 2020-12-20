@@ -15,12 +15,12 @@ read choice
 if [ $choice -eq 1 ] ; then
 	echo ""
 
-	wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_version/TCUARN.sh && bash "$root/TCUARN.sh"
+	wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUARN.sh && bash "$root/TCUARN.sh"
   
 else
 	if [ $choice -eq 2 ] ; then
 		echo ""
-		wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUARU_Latest.sh && bash "$root/TCUARU_Latest.sh"
+		wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUARU_Latest.sh && bash "$root/TCUARU_Latest.sh"
     
 	else
 			if [ $choice -eq 3 ] ; then

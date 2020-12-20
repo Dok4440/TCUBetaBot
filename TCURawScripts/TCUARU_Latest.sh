@@ -14,7 +14,7 @@ cd "$root/TCU/src/NadekoBot"
 dotnet run -c Release
 youtube-dl -U
 cd "$root"
-wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_version/TCU_installer_latest.sh
+wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCU_installer_latest.sh
 bash "$root/TCU_installer_latest.sh"
 sleep 5s
 done

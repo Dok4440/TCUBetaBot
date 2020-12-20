@@ -18,7 +18,7 @@ read choice
 if [ $choice -eq 1 ] ; then
 	echo ""
 
-	wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUARN.sh
+	wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUARN.sh
 	cd "$root"
 	echo "Starting Nadeko in pm2 with auto-restart and no auto-update..."
 	sudo pm2 start "$root/TCUARN.sh" --interpreter=bash --name=TCU_DO_NOT_RENAME_THIS
@@ -30,7 +30,7 @@ else
 	if [ $choice -eq 2 ] ; then
 		echo ""
 
-		wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUARU_Latest.sh
+		wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUARU_Latest.sh
 
 		cd "$root"
 		echo "Starting Nadeko in pm2 with auto-restart and auto-update..."
@@ -43,7 +43,7 @@ else
 		if [ $choice -eq 3 ] ; then
 		echo ""
 
-		wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCU_run.sh
+		wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCU_run.sh
 
 		cd "$root"
 		echo "Starting Nadeko in pm2 normally without any auto update or restart.."

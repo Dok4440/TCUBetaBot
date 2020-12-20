@@ -31,7 +31,7 @@ root=$(pwd)
 # It simply opens 'TCU_master_installer' but the reason you need to bash THIS file is simple;
 # As you can see at like 35 & 36; it cd's into root and deletes TCU_master_installer after opening the file.
 
-wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCU_master_installer.sh
+wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCU_master_installer.sh
 
 
 bash TCU_master_installer.sh

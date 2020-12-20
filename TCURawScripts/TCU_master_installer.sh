@@ -21,7 +21,7 @@ if [ $choice -eq 1 ] ; then
 	echo "Downloading TCU, please wait."
 	sleep 5s
 
-	wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCU_installer_latest.sh && bash "$root/TCU_installer_latest.sh"
+	wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCU_installer_latest.sh && bash "$root/TCU_installer_latest.sh"
 
 	echo ""
 	bash "$root/linuxAIO.sh"
@@ -30,7 +30,7 @@ else
 			echo ""
 			echo "Running TCU Normally, if you are running this to check Tea Cup Utils, use .die command on discord to stop the bot."
 
-			wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCU_run.sh && bash "$root/TCU_run.sh"
+			wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCU_run.sh && bash "$root/TCU_run.sh"
 
 			echo ""
 			echo "Welcome back to NadekoBot."
@@ -42,7 +42,7 @@ else
 				echo "Running Nadeko with Auto Restart you will have to close the session to stop the auto restart."
 				sleep 5s
 
-				wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUAutoRestartAndUpdate.sh && bash "$root/TCUAutoRestartAndUpdate.sh"
+				wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUAutoRestartAndUpdate.sh && bash "$root/TCUAutoRestartAndUpdate.sh"
 
 				echo ""
 				echo "That did not work?"
@@ -53,7 +53,7 @@ else
 					echo ""
 					echo "Getting the Auto-Installer for Debian/Ubuntu"
 
-					wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUautoinstaller.sh && bash "$root/TCUautoinstaller.sh"
+					wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUautoinstaller.sh && bash "$root/TCUautoinstaller.sh"
 
 					echo ""
 					echo "Welcome back..."
@@ -192,7 +192,7 @@ bash "$root/linuxAIO.sh"
 						echo ""
 						echo "Starting the setup for pm2 with TCU. This only has to be done once."
 
-						wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUpm2setup.sh && bash "$root/TCUpm2setup.sh"
+						wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUpm2setup.sh && bash "$root/TCUpm2setup.sh"
 
 						echo ""
 						echo "Welcome back..."
@@ -203,7 +203,7 @@ bash "$root/linuxAIO.sh"
 							echo ""
 							echo "Getting the pm2 startup options for TCU.."
 
-							wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/TCUpm2start.sh && bash "$root/TCUpm2start.sh"
+							wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/TCUpm2start.sh && bash "$root/TCUpm2start.sh"
 
 							echo ""
 							sleep 2s
