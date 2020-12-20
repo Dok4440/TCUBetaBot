@@ -29,8 +29,8 @@ namespace NadekoBot.Modules.Administration.Services
         public ConcurrentDictionary<ulong, ConcurrentDictionary<(ulong, TimerType), Timer>> Un_Timers { get; }
             = new ConcurrentDictionary<ulong, ConcurrentDictionary<(ulong, TimerType), Timer>>();
 
-        public event Action<IGuildUser, IUser, MuteType, string> UserMuted = delegate { };
-        public event Action<IGuildUser, IUser, MuteType, string> UserUnmuted = delegate { };
+        public event Action<IGuildUser, IUser, MuteType> UserMuted = delegate { };
+        public event Action<IGuildUser, IUser, MuteType> UserUnmuted = delegate { };
 
         private static readonly OverwritePermissions denyOverwrite =
             new OverwritePermissions(addReactions: PermValue.Deny, sendMessages: PermValue.Deny,
@@ -122,35 +122,6 @@ namespace NadekoBot.Modules.Administration.Services
 
                 _client.UserJoined += Client_UserJoined;
             }
-
-            UserMuted += OnUserMuted;
-            UserUnmuted += OnUserUnmuted;
-        }
-
-        private void OnUserMuted(IGuildUser user, IUser mod, MuteType type, string reason)
-        {
-            if (string.IsNullOrWhiteSpace(reason))
-                return;
-            
-            var _ = Task.Run(() => user.SendMessageAsync(embed: new EmbedBuilder()
-                .WithDescription($"You've been muted in {user.Guild} server")
-                .AddField("Mute Type", type.ToString())
-                .AddField("Moderator", mod.ToString())
-                .AddField("Reason", reason)
-                .Build()));
-        }
-
-        private void OnUserUnmuted(IGuildUser user, IUser mod, MuteType type, string reason)
-        {
-            if (string.IsNullOrWhiteSpace(reason))
-                return;
-        
-            var _ = Task.Run(() => user.SendMessageAsync(embed: new EmbedBuilder()
-                .WithDescription($"You've been unmuted in {user.Guild} server")
-                .AddField("Unmute Type", type.ToString())
-                .AddField("Moderator", mod.ToString())
-                .AddField("Reason", reason)
-                .Build()));
         }
 
         private Task Client_UserJoined(IGuildUser usr)
@@ -161,7 +132,7 @@ namespace NadekoBot.Modules.Administration.Services
 
                 if (muted == null || !muted.Contains(usr.Id))
                     return Task.CompletedTask;
-                var _ = Task.Run(() => MuteUser(usr, _client.CurrentUser, reason: "Sticky mute").ConfigureAwait(false));
+                var _ = Task.Run(() => MuteUser(usr, _client.CurrentUser).ConfigureAwait(false));
             }
             catch (Exception ex)
             {
@@ -181,7 +152,7 @@ namespace NadekoBot.Modules.Administration.Services
             }
         }
 
-        public async Task MuteUser(IGuildUser usr, IUser mod, MuteType type = MuteType.All, string reason = "")
+        public async Task MuteUser(IGuildUser usr, IUser mod, MuteType type = MuteType.All)
         {
             if (type == MuteType.All)
             {
@@ -206,25 +177,25 @@ namespace NadekoBot.Modules.Administration.Services
 
                     await uow.SaveChangesAsync();
                 }
-                UserMuted(usr, mod, MuteType.All, reason);
+                UserMuted(usr, mod, MuteType.All);
             }
             else if (type == MuteType.Voice)
             {
                 try
                 {
                     await usr.ModifyAsync(x => x.Mute = true).ConfigureAwait(false);
-                    UserMuted(usr, mod, MuteType.Voice, reason);
+                    UserMuted(usr, mod, MuteType.Voice);
                 }
                 catch { }
             }
             else if (type == MuteType.Chat)
             {
                 await usr.AddRoleAsync(await GetMuteRole(usr.Guild).ConfigureAwait(false)).ConfigureAwait(false);
-                UserMuted(usr, mod, MuteType.Chat, reason);
+                UserMuted(usr, mod, MuteType.Chat);
             }
         }
 
-        public async Task UnmuteUser(ulong guildId, ulong usrId, IUser mod, MuteType type = MuteType.All, string reason = "")
+        public async Task UnmuteUser(ulong guildId, ulong usrId, IUser mod, MuteType type = MuteType.All)
         {
             var usr = _client.GetGuild(guildId)?.GetUser(usrId);
             if (type == MuteType.All)
@@ -254,7 +225,7 @@ namespace NadekoBot.Modules.Administration.Services
                 {
                     try { await usr.ModifyAsync(x => x.Mute = false).ConfigureAwait(false); } catch { }
                     try { await usr.RemoveRoleAsync(await GetMuteRole(usr.Guild).ConfigureAwait(false)).ConfigureAwait(false); } catch { /*ignore*/ }
-                    UserUnmuted(usr, mod, MuteType.All, reason);
+                    UserUnmuted(usr, mod, MuteType.All);
                 }
             }
             else if (type == MuteType.Voice)
@@ -264,7 +235,7 @@ namespace NadekoBot.Modules.Administration.Services
                 try
                 {
                     await usr.ModifyAsync(x => x.Mute = false).ConfigureAwait(false);
-                    UserUnmuted(usr, mod, MuteType.Voice, reason);
+                    UserUnmuted(usr, mod, MuteType.Voice);
                 }
                 catch { }
             }
@@ -273,7 +244,7 @@ namespace NadekoBot.Modules.Administration.Services
                 if (usr == null)
                     return;
                 await usr.RemoveRoleAsync(await GetMuteRole(usr.Guild).ConfigureAwait(false)).ConfigureAwait(false);
-                UserUnmuted(usr, mod, MuteType.Chat, reason);
+                UserUnmuted(usr, mod, MuteType.Chat);
             }
         }
 
@@ -322,9 +293,9 @@ namespace NadekoBot.Modules.Administration.Services
             return muteRole;
         }
 
-        public async Task TimedMute(IGuildUser user, IUser mod, TimeSpan after, MuteType muteType = MuteType.All, string reason = "")
+        public async Task TimedMute(IGuildUser user, IUser mod, TimeSpan after, MuteType muteType = MuteType.All)
         {
-            await MuteUser(user, mod, muteType, reason).ConfigureAwait(false); // mute the user. This will also remove any previous unmute timers
+            await MuteUser(user, mod, muteType).ConfigureAwait(false); // mute the user. This will also remove any previous unmute timers
             using (var uow = _db.GetDbContext())
             {
                 var config = uow.GuildConfigs.ForId(user.GuildId, set => set.Include(x => x.UnmuteTimers));
@@ -425,7 +396,7 @@ namespace NadekoBot.Modules.Administration.Services
                     try
                     {
                         // unmute the user, this will also remove the timer from the db
-                        await UnmuteUser(guildId, userId, _client.CurrentUser, reason: "Timed mute expired").ConfigureAwait(false);
+                        await UnmuteUser(guildId, userId, _client.CurrentUser).ConfigureAwait(false);
                     }
                     catch (Exception ex)
                     {

@@ -90,7 +90,7 @@ namespace NadekoBot.Modules.Utility
                     {
                         var when = rem.When;
                         var diff = when - DateTime.UtcNow;
-                        embed.AddField($"#{++i + (page * 10)} {rem.When:HH:mm yyyy-MM-dd} UTC (in {(int)diff.TotalHours}h {(int)diff.Minutes}m)", $@"`Target:` {(rem.IsPrivate ? "DM" : "Channel")}
+                        embed.AddField($"#{++i} {rem.When:HH:mm yyyy-MM-dd} UTC (in {(int)diff.TotalHours}h {(int)diff.Minutes}m)", $@"`Target:` {(rem.IsPrivate ? "DM" : "Channel")}
 `TargetId:` {rem.ChannelId}
 `Message:` {rem.Message}", false);
                     }
@@ -118,10 +118,10 @@ namespace NadekoBot.Modules.Utility
                 {
                     var rems = uow.Reminders.RemindersFor(ctx.User.Id, index / 10)
                         .ToList();
-                    var pageIndex = index % 10;
-                    if (rems.Count > pageIndex)
+
+                    if (rems.Count > index)
                     {
-                        rem = rems[pageIndex];
+                        rem = rems[index];
                         uow.Reminders.Remove(rem);
                         uow.SaveChanges();
                     }

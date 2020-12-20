@@ -130,11 +130,7 @@ namespace NadekoBot.Modules.Administration
                     foreach (var rr in rrs)
                     {
                         var ch = g.GetTextChannel(rr.ChannelId);
-                        IUserMessage msg = null;
-                        if (!(ch is null))
-                        {
-                            msg = await ch.GetMessageAsync(rr.MessageId).ConfigureAwait(false) as IUserMessage;
-                        }
+                        var msg = (await (ch?.GetMessageAsync(rr.MessageId)).ConfigureAwait(false)) as IUserMessage;
                         var content = msg?.Content.TrimTo(30) ?? "DELETED!";
                         embed.AddField($"**{rr.Index + 1}.** {(ch?.Name ?? "DELETED!")}",
                             GetText("reaction_roles_message", rr.ReactionRoles?.Count ?? 0, content));

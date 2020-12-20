@@ -9,7 +9,6 @@ using NadekoBot.Core.Services.Database.Models;
 using NLog;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using NadekoBot.Common.Replacements;
 using NadekoBot.Modules.Utility.Services;
 
 namespace NadekoBot.Modules.Utility.Common
@@ -45,15 +44,13 @@ namespace NadekoBot.Modules.Utility.Common
         public DateTime NextDateTime { get; set; }
 
         private Timer _t;
-        private readonly DiscordSocketClient _client;
 
-        public RepeatRunner(DiscordSocketClient client, SocketGuild guild, Repeater repeater, MessageRepeaterService mrs)
+        public RepeatRunner(SocketGuild guild, Repeater repeater, MessageRepeaterService mrs)
         {
             _log = LogManager.GetCurrentClassLogger();
             Repeater = repeater;
             Guild = guild;
             _mrs = mrs;
-            _client = client;
 
             InitialInterval = Repeater.Interval;
 
@@ -202,11 +199,7 @@ namespace NadekoBot.Modules.Utility.Common
                     // ignored
                 }
 
-                var rep = new ReplacementBuilder()
-                    .WithDefault(Guild.CurrentUser, Channel, Guild, _client)
-                    .Build();
-
-                var newMsg = await Channel.SendMessageAsync(rep.Replace(toSend).SanitizeMentions()).ConfigureAwait(false);
+                var newMsg = await Channel.SendMessageAsync(toSend.SanitizeMentions()).ConfigureAwait(false);
 
                 if (Repeater.NoRedundant)
                 {

@@ -701,7 +701,7 @@ namespace NadekoBot.Modules.Searches
             if (usr == null)
                 usr = (IGuildUser)ctx.User;
 
-            var avatarUrl = usr.RealAvatarUrl(2048);
+            var avatarUrl = usr.RealAvatarUrl();
 
             if (avatarUrl == null)
             {
@@ -712,7 +712,8 @@ namespace NadekoBot.Modules.Searches
             await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                 .AddField(efb => efb.WithName("Username").WithValue(usr.ToString()).WithIsInline(false))
                 .AddField(efb => efb.WithName("Avatar Url").WithValue(avatarUrl).WithIsInline(false))
-                .WithThumbnailUrl(avatarUrl.ToString()), ctx.User.Mention).ConfigureAwait(false);
+                .WithThumbnailUrl(avatarUrl.ToString())
+                .WithImageUrl(avatarUrl.ToString()), ctx.User.Mention).ConfigureAwait(false);
         }
 
         // done in 3.0
@@ -733,7 +734,7 @@ namespace NadekoBot.Modules.Searches
                     var res = await http.GetStringAsync($"http://www.{Uri.EscapeUriString(target)}.wikia.com/api/v1/Search/List?query={Uri.EscapeUriString(query)}&limit=25&minArticleQuality=10&batch=1&namespaces=0%2C14").ConfigureAwait(false);
                     var items = JObject.Parse(res);
                     var found = items["items"][0];
-                    var response = $@"`{GetText("title")}` {found["title"]?.ToString().SanitizeMentions()}
+                    var response = $@"`{GetText("title")}` {found["title"]}
 `{GetText("quality")}` {found["quality"]}
 `{GetText("url")}:` {await _google.ShortenUrl(found["url"].ToString()).ConfigureAwait(false)}";
                     await ctx.Channel.SendMessageAsync(response).ConfigureAwait(false);

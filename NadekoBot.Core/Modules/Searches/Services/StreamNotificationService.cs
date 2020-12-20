@@ -236,18 +236,15 @@ namespace NadekoBot.Modules.Searches.Services
             return sub.PublishAsync($"{_creds.RedisKey()}_streams_online", JsonConvert.SerializeObject(data));
         }
 
-        private Task ClientOnJoinedGuild(GuildConfig guildConfig)
+        private Task ClientOnJoinedGuild(GuildConfig _)
         {
             using (var uow = _db.GetDbContext())
             {
                 var gc = uow._context.GuildConfigs
                     .AsQueryable()
                     .Include(x => x.FollowedStreams)
-                    .FirstOrDefault(x => x.GuildId == guildConfig.GuildId);
+                    .FirstOrDefault();
 
-                if (gc is null)
-                    return Task.CompletedTask;
-                
                 if (gc.NotifyStreamOffline)
                     _offlineNotificationServers.Add(gc.GuildId);
 

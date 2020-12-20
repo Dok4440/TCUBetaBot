@@ -31,7 +31,7 @@
     "Dot": "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/rategirl/dot.png"
   },
   "Xp": {
-    "Bg": "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/xp/bg.png"
+    "Bg": "https://media.discordapp.net/attachments/789525738331308032/789525834180329482/xptemplate.png"
   },
   "Rip": {
     "Bg": "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/rip/rip.png",
@@ -39,12 +39,12 @@
   },
   "Slots": {
     "Emojis": [
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/0.png",
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/1.png",
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/2.png",
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/3.png",
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/4.png",
-      "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/emojis/5.png"
+      "https://media.discordapp.net/attachments/789525738331308032/789525828408705104/Icon_ban.png",
+      "https://media.discordapp.net/attachments/789525738331308032/789525816147968040/Icon_diane.png",
+      "https://media.discordapp.net/attachments/789525738331308032/789525818597441556/Icon_escanor.png",
+      "https://media.discordapp.net/attachments/789525738331308032/789525820372680714/Icon_gowther.png",
+      "https://media.discordapp.net/attachments/789525738331308032/789525820989112330/Icon_king.png",
+      "https://media.discordapp.net/attachments/789525738331308032/789525822180163584/Icon_merlin.png"
     ],
     "Numbers": [
       "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/numbers/0.png",
@@ -58,6 +58,6 @@
       "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/numbers/8.png",
       "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/numbers/9.png"
     ],
-    "Bg": "https://nadeko-pictures.nyc3.digitaloceanspaces.com/other/slots/bg.png"
+    "Bg": "https://media.discordapp.net/attachments/789525738331308032/789525831160168478/slottemplate.png"
   }
 }

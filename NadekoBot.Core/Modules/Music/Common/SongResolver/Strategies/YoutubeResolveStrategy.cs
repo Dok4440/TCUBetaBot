@@ -6,6 +6,7 @@ using NadekoBot.Core.Services.Database.Models;
 using NadekoBot.Core.Services.Impl;
 using NLog;
 using YoutubeExplode;
+using YoutubeExplode.Videos;
 
 namespace NadekoBot.Modules.Music.Common.SongResolver.Strategies
 {
@@ -20,26 +21,20 @@ namespace NadekoBot.Modules.Music.Common.SongResolver.Strategies
 
         public async Task<SongInfo> ResolveSong(string query)
         {
-            try
-            {
-                var s = await ResolveWithYtDl(query).ConfigureAwait(false);
-                if (s != null)
-                    return s;
-            }
-            catch (Exception ex) { _log.Warn(ex.ToString()); }
-
-            try
-            {
-                return await ResolveWithYtExplode(query).ConfigureAwait(false);
-            }
-            catch (Exception ex) { _log.Warn(ex.ToString()); }
-            return null;
+            // try
+            // {
+            //     var s = await ResolveWithYtExplode(query).ConfigureAwait(false);
+            //     if (s != null)
+            //         return s;
+            // }
+            // catch { }
+            return await ResolveWithYtDl(query).ConfigureAwait(false);
         }
 
         private async Task<SongInfo> ResolveWithYtExplode(string query)
         {
             var client = new YoutubeClient();
-
+            
             _log.Info("Searching for video");
             var videos = await client.Search.GetVideosAsync(query);
 
