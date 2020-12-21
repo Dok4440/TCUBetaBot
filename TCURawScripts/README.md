@@ -15,7 +15,7 @@ This `.sh` files will deal with all installations for you!
 Use the following command to get started:  
 
 
-`cd ~ && wget -N https://raw.githubusercontent.com/Dok4440/TCURawScripts/Latest_stable_version/linuxAIO.sh && bash linuxAIO.sh`
+`cd ~ && wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/linuxAIO.sh && bash linuxAIO.sh`
 
 
 If everything went right, a menu will show up.
