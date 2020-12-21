@@ -7,10 +7,10 @@
     "Name": {
       "Color": "ffffffff",
       "Show": true,
-      "FontSize": 40,
+      "FontSize": 50,
       "Pos": {
-        "X": 110,
-        "Y": 25
+        "X": 130,
+        "Y": 17
       }
     },
     "Icon": {
@@ -63,8 +63,8 @@
     "TimeOnLevel": {
       "Format": "{0}d{1}h{2}m",
       "Global": {
-        "Color": "0d41f3",
-        "Show": false,
+        "Color": "ffffffff",
+        "Show": true,
         "FontSize": 20,
         "Pos": {
           "X": 50,
@@ -72,8 +72,8 @@
         }
       },
       "Guild": {
-        "Color": "0033e4",
-        "Show": false,
+        "Color": "ffffffff",
+        "Show": true,
         "FontSize": 20,
         "Pos": {
           "X": 50,
@@ -112,8 +112,8 @@
         }
       },
       "Global": {
-        "Color": "0033e4",
-        "Show": false,
+        "Color": "ffffffff",
+        "Show": true,
         "FontSize": 50,
         "Pos": {
           "X": 430,
@@ -121,8 +121,8 @@
         }
       },
       "Guild": {
-        "Color": "0033e4",
-        "Show": false,
+        "Color": "ffffffff",
+        "Show": true,
         "FontSize": 50,
         "Pos": {
           "X": 400,
@@ -131,7 +131,7 @@
       },
       "Awarded": {
         "Color": "ffffffff",
-        "Show": false,
+        "Show": true,
         "FontSize": 25,
         "Pos": {
           "X": 445,
@@ -153,8 +153,8 @@
       }
     },
     "Name": {
-      "Color": "0033e4",
-      "Show": false,
+      "Color": "ffffffff",
+      "Show": true,
       "FontSize": 35,
       "Pos": {
         "X": 650,

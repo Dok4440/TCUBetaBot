@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -76,25 +76,27 @@ namespace NadekoBot.Modules.Administration.Services
                 var user = await guild.GetUserAsync(userId).ConfigureAwait(false);
                 if (user == null)
                     return null;
+
+                var muteReason = "Warning punishment - " + reason;
                 switch (p.Punishment)
                 {
                     case PunishmentAction.Mute:
                         if (p.Time == 0)
-                            await _mute.MuteUser(user, mod).ConfigureAwait(false);
+                            await _mute.MuteUser(user, mod, reason: muteReason).ConfigureAwait(false);
                         else
-                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time)).ConfigureAwait(false);
+                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time), reason: muteReason).ConfigureAwait(false);
                         break;
                     case PunishmentAction.VoiceMute:
                         if (p.Time == 0)
-                            await _mute.MuteUser(user, mod, MuteType.Voice).ConfigureAwait(false);
+                            await _mute.MuteUser(user, mod, MuteType.Voice, muteReason).ConfigureAwait(false);
                         else
-                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time), MuteType.Voice).ConfigureAwait(false);
+                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time), MuteType.Voice, muteReason).ConfigureAwait(false);
                         break;
                     case PunishmentAction.ChatMute:
                         if (p.Time == 0)
-                            await _mute.MuteUser(user, mod, MuteType.Chat).ConfigureAwait(false);
+                            await _mute.MuteUser(user, mod, MuteType.Chat, muteReason).ConfigureAwait(false);
                         else
-                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time), MuteType.Chat).ConfigureAwait(false);
+                            await _mute.TimedMute(user, mod, TimeSpan.FromMinutes(p.Time), MuteType.Chat, muteReason).ConfigureAwait(false);
                         break;
                     case PunishmentAction.Kick:
                         await user.KickAsync("Warned too many times.").ConfigureAwait(false);
@@ -106,7 +108,7 @@ namespace NadekoBot.Modules.Administration.Services
                             await _mute.TimedBan(user, TimeSpan.FromMinutes(p.Time), "Warned too many times.").ConfigureAwait(false);
                         break;
                     case PunishmentAction.Softban:
-                        await guild.AddBanAsync(user, 7, reason: "Warned too many times").ConfigureAwait(false);
+                        await guild.AddBanAsync(user, 7, reason: "Softban | Warned too many times").ConfigureAwait(false);
                         try
                         {
                             await guild.RemoveBanAsync(user).ConfigureAwait(false);

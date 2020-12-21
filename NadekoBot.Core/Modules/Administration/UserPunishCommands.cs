@@ -353,24 +353,32 @@ namespace NadekoBot.Modules.Administration
                     await ReplyErrorLocalizedAsync("hierarchy").ConfigureAwait(false);
                     return;
                 }
-                if (!string.IsNullOrWhiteSpace(msg))
+
+                var dmFailed = false;
+
+                try
                 {
-                    try
-                    {
-                        await user.SendErrorAsync(GetText("bandm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
+                    await user.SendErrorAsync(GetText("bandm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
+                }
+                catch
+                {
+                    dmFailed = true;
                 }
 
+
                 await _mute.TimedBan(user, time.Time, ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
-                await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle("⛔️ " + GetText("banned_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true))
-                        .WithFooter($"{time.Time.Days}d {time.Time.Hours}h {time.Time.Minutes}m"))
+                var toSend = new EmbedBuilder().WithOkColor()
+                    .WithTitle("⛔️ " + GetText("banned_user"))
+                    .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
+                    .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true))
+                    .AddField(efb => efb.WithName(GetText("duration")).WithValue($"{time.Time.Days}d {time.Time.Hours}h {time.Time.Minutes}m").WithIsInline(true));
+
+                if (dmFailed)
+                {
+                    toSend.WithFooter("⚠️ " + GetText("unable_to_dm_user"));
+                }
+
+                await ctx.Channel.EmbedAsync(toSend)
                     .ConfigureAwait(false);
             }
 
@@ -409,23 +417,31 @@ namespace NadekoBot.Modules.Administration
                     await ReplyErrorLocalizedAsync("hierarchy").ConfigureAwait(false);
                     return;
                 }
-                if (!string.IsNullOrWhiteSpace(msg))
+
+                var dmFailed = false;
+
+                try
                 {
-                    try
-                    {
-                        await user.SendErrorAsync(GetText("bandm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
+                    await user.SendErrorAsync(GetText("bandm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
+                }
+                catch
+                {
+                    dmFailed = true;
                 }
 
                 await ctx.Guild.AddBanAsync(user, 7, ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
-                await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle("⛔️ " + GetText("banned_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
+
+                var toSend = new EmbedBuilder().WithOkColor()
+                    .WithTitle("⛔️ " + GetText("banned_user"))
+                    .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
+                    .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true));
+
+                if (dmFailed)
+                {
+                    toSend.WithFooter("⚠️ " + GetText("unable_to_dm_user"));
+                }
+                
+                await ctx.Channel.EmbedAsync(toSend)
                     .ConfigureAwait(false);
             }
 
@@ -487,26 +503,32 @@ namespace NadekoBot.Modules.Administration
                     return;
                 }
 
-                if (!string.IsNullOrWhiteSpace(msg))
+                var dmFailed = false;
+
+                try
                 {
-                    try
-                    {
-                        await user.SendErrorAsync(GetText("sbdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
-                    }
+                    await user.SendErrorAsync(GetText("sbdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
+                }
                     catch
-                    {
-                        // ignored
-                    }
+                {
+                    dmFailed = true;
                 }
 
-                await ctx.Guild.AddBanAsync(user, 7, ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
+                await ctx.Guild.AddBanAsync(user, 7, "Softban | " + ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
                 try { await ctx.Guild.RemoveBanAsync(user).ConfigureAwait(false); }
                 catch { await ctx.Guild.RemoveBanAsync(user).ConfigureAwait(false); }
 
-                await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle("☣ " + GetText("sb_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
+                var toSend = new EmbedBuilder().WithOkColor()
+                    .WithTitle("☣ " + GetText("sb_user"))
+                    .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
+                    .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true));
+                
+                if (dmFailed)
+                {
+                    toSend.WithFooter("⚠️ " + GetText("unable_to_dm_user"));
+                }
+                
+                await ctx.Channel.EmbedAsync(toSend)
                     .ConfigureAwait(false);
             }
 
@@ -521,20 +543,32 @@ namespace NadekoBot.Modules.Administration
                     await ReplyErrorLocalizedAsync("hierarchy").ConfigureAwait(false);
                     return;
                 }
-                if (!string.IsNullOrWhiteSpace(msg))
-                {
-                    try
-                    {
-                        await user.SendErrorAsync(GetText("kickdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
-                    }
-                    catch { }
-                }
 
+                var dmFailed = false;
+
+                try
+                {
+                    await user.SendErrorAsync(GetText("kickdm", Format.Bold(ctx.Guild.Name), msg))
+                        .ConfigureAwait(false);
+                }
+                catch
+                {                        
+                    dmFailed = true;
+                }
+            
                 await user.KickAsync(ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
-                await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle(GetText("kicked_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
+                
+                var toSend = new EmbedBuilder().WithOkColor()
+                    .WithTitle(GetText("kicked_user"))
+                    .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
+                    .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true));
+
+                if (dmFailed)
+                {
+                    toSend.WithFooter("⚠️ " + GetText("unable_to_dm_user"));
+                }
+                
+                await ctx.Channel.EmbedAsync(toSend)
                     .ConfigureAwait(false);
             }
 

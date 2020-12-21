@@ -1,7 +1,7 @@
-﻿{
+{
   "h": {
     "Cmd": "help h",
-    "Desc": "Shows you help for a single TCU-command OR DMs you basic information if no parameters are specified.",
+    "Desc": "Either shows a help for a single command, or DMs you help link if no parameters are specified.",
     "Usage": [
       "{0}h {0}cmds",
       "{0}h"
@@ -9,28 +9,28 @@
   },
   "hgit": {
     "Cmd": "hgit",
-    "Desc": "Generates the commandlist.md file. This DOES NOT return the actual TCU commandlist. It solely generates it.",
+    "Desc": "Generates the commandlist.md file.",
     "Usage": [
       "{0}hgit"
     ]
   },
   "donate": {
     "Cmd": "donate",
-    "Desc": "Bitch u better spend ur money better than on a discord bot... if you're name is haku, bitch **P A Y   U P**",
+    "Desc": "Instructions for helping the project financially.",
     "Usage": [
       "{0}donate"
     ]
   },
   "modules": {
     "Cmd": "modules mdls",
-    "Desc": "Lists all of TCU's modules. If a certain module is not shown it means they're disabled by Dok#4440. To use them: do `... selfhost`",
+    "Desc": "Lists all bot modules.",
     "Usage": [
       "{0}modules"
     ]
   },
   "commands": {
     "Cmd": "commands cmds",
-    "Desc": "List all of TCU's commands from a certain module. You can either specify the full name or only the first few letters of the module name. If a certain command is not shown it means they're disabled by Dok#4440. To use them: do `... selfhost`",
+    "Desc": "List all of the bot's commands from a certain module. You can either specify the full name or only the first few letters of the module name.",
     "Usage": [
       "{0}cmds Admin",
       "{0}cmds Admin --view 1"
@@ -46,14 +46,14 @@
   },
   "greet": {
     "Cmd": "greet",
-    "Desc": "Toggles anouncements on the current channel when someone joins the server. Before you ask how to disable it... it's a toggle, which means that doing `~greet` again disables it.",
+    "Desc": "Toggles anouncements on the current channel when someone joins the server.",
     "Usage": [
       "{0}greet"
     ]
   },
   "greetmsg": {
     "Cmd": "greetmsg",
-    "Desc": "Sets a new join announcement message which will be shown in the server's channel. Type `%user.mention%` if you want to mention the new member. Using it with no message will show the current greet message. You can use embed json from carlbot (to make the embed i don't got such advanced technology) instead of a regular text.",
+    "Desc": "Sets a new join announcement message which will be shown in the server's channel. Type `%user.mention%` if you want to mention the new member. Using it with no message will show the current greet message. You can use embed json from <https://eb.nadeko.bot/> instead of a regular text, if you want the message to be embedded.",
     "Usage": [
       "{0}greetmsg Welcome, %user.mention%."
     ]
@@ -67,7 +67,7 @@
   },
   "byemsg": {
     "Cmd": "byemsg",
-    "Desc": "Sets a new leave announcement message. Type `%user.mention%` if you want to show the name the user who left. Type `%id%` to show id. Using this command with no message will show the current bye message. You can use embed json from carlbot (to make the embed i don't got such advanced technology) instead of a regular text.",
+    "Desc": "Sets a new leave announcement message. Type `%user.mention%` if you want to show the name the user who left. Type `%id%` to show id. Using this command with no message will show the current bye message. You can use embed json from <https://eb.nadeko.bot/> instead of a regular text, if you want the message to be embedded.",
     "Usage": [
       "{0}byemsg %user.mention% has left."
     ]
@@ -258,7 +258,7 @@
   },
   "addcustreact": {
     "Cmd": "addcustreact acr",
-    "Desc": "Add a custom reaction with a trigger and a response. Running this command in server requires the Administration permission. Running this command in DM is Bot Owner only and adds a new global custom reaction.",
+    "Desc": "Add a custom reaction with a trigger and a response. Running this command in server requires the Administration permission. Running this command in DM is Bot Owner only and adds a new global custom reaction. Guide here: <http://nadekobot.readthedocs.io/en/latest/custom-reactions/>",
     "Usage": [
       "{0}acr \"hello\" Hi there %user.mention%"
     ]
@@ -330,7 +330,7 @@
   },
   "leave": {
     "Cmd": "leave",
-    "Desc": "Makes TCU leave the server. Either server name or server ID is required.",
+    "Desc": "Makes Nadeko leave the server. Either server name or server ID is required.",
     "Usage": [
       "{0}leave 123123123331"
     ]
@@ -427,17 +427,19 @@
   },
   "kick": {
     "Cmd": "kick k",
-    "Desc": "Kick is not a TCU command (atm) because Discord doesn't log kicks. To 'kick' someone, please use `~softban` or `~sb`. This bans a user and unbans them immediatly. TCU will log this to the 'userBanned' logevent. To use the kick command: do `... selfhost`",
+    "Desc": "Kicks a mentioned user.",
     "Usage": [
-      "{0}sb \"@some Guy\" Your behaviour is toxic."
+      "{0}k \"@some Guy\" Your behaviour is toxic."
     ]
   },
   "mute": {
     "Cmd": "mute",
-    "Desc": "Mutes a mentioned user both from speaking and chatting. You can also specify time string for how long the user should be muted.",
+    "Desc": "Mutes a mentioned user both from speaking and chatting. You can also specify time string for how long the user should be muted. You can optionally specify a reason.",
     "Usage": [
       "{0}mute @Someone",
-      "{0}mute 1h30m @Someone"
+      "{0}mute @Someone too noisy",
+      "{0}mute 1h30m @Someone",
+      "{0}mute 1h30m @Someone too noisy"
     ]
   },
   "voiceunmute": {
@@ -507,7 +509,7 @@
   },
   "prune": {
     "Cmd": "prune clear",
-    "Desc": "`{0}prune` removes all TCU's messages in the last 100 messages. `{0}prune X` removes last `X` number of messages from the channel (up to 100). `{0}prune @Someone` removes all Someone's messages in the last 100 messages. `{0}prune @Someone X` removes last `X` number of 'Someone's' messages in the channel. You can use the `-s` / `--safe` parameter at the end to only prune messages that are not pinned.",
+    "Desc": "`{0}prune` removes all Nadeko's messages in the last 100 messages. `{0}prune X` removes last `X` number of messages from the channel (up to 100). `{0}prune @Someone` removes all Someone's messages in the last 100 messages. `{0}prune @Someone X` removes last `X` number of 'Someone's' messages in the channel. You can use the `-s` / `--safe` parameter at the end to only prune messages that are not pinned.",
     "Usage": [
       "{0}prune",
       "{0}prune -s",
@@ -543,7 +545,7 @@
   },
   "setavatar": {
     "Cmd": "setavatar setav",
-    "Desc": "Sets a new avatar image for the TCUBot. Parameter is a direct link to an image.",
+    "Desc": "Sets a new avatar image for the NadekoBot. Parameter is a direct link to an image.",
     "Usage": [
       "{0}setav http://i.imgur.com/xTG3a1I.jpg"
     ]
@@ -674,7 +676,7 @@
   },
   "stats": {
     "Cmd": "stats",
-    "Desc": "Shows some basic stats for TCU.",
+    "Desc": "Shows some basic stats for Nadeko.",
     "Usage": [
       "{0}stats"
     ]
@@ -1188,7 +1190,7 @@
   },
   "rps": {
     "Cmd": "rps",
-    "Desc": "Play a game of Rocket-Paperclip-Scissors with TCU. You can bet on it. Multiplier is the same as on betflip.",
+    "Desc": "Play a game of Rocket-Paperclip-Scissors with Nadeko. You can bet on it. Multiplier is the same as on betflip.",
     "Usage": [
       "{0}rps r 100",
       "{0}rps scissors"
@@ -1568,16 +1570,17 @@
   },
   "memelist": {
     "Cmd": "memelist",
-    "Desc": "Pulls a list of memes you can use with `{0}memegen` from http://memegen.link/templates/",
+    "Desc": "Shows a list of template keys (and their repspective names) used for `{0}memegen`.",
     "Usage": [
       "{0}memelist"
     ]
   },
   "memegen": {
     "Cmd": "memegen",
-    "Desc": "Generates a meme from memelist with top and bottom text.",
+    "Desc": "Generates a meme from memelist with specified text. Separate multiple text values with semicolons. Provide no meme text to see an example meme with that template.",
     "Usage": [
-      "{0}memegen biw \"gets iced coffee\" \"in the winter\""
+      "{0}memegen biw gets iced coffee;in the winter",
+      "{0}memegen ntot"
     ]
   },
   "weather": {
@@ -1872,7 +1875,7 @@
   },
   "greetdmmsg": {
     "Cmd": "greetdmmsg",
-    "Desc": "Sets a new join announcement message which will be sent to the user who joined. Type `%user.mention%` if you want to mention the new member. Using it with no message will show the current DM greet message. Embeds are supported.",
+    "Desc": "Sets a new join announcement message which will be sent to the user who joined. Type `%user.mention%` if you want to mention the new member. Using it with no message will show the current DM greet message. You can use embed json from <https://eb.nadeko.bot> instead of a regular text, if you want the message to be embedded.",
     "Usage": [
       "{0}greetdmmsg Welcome to the server, %user.mention%"
     ]
@@ -1983,16 +1986,18 @@
   },
   "chatmute": {
     "Cmd": "chatmute",
-    "Desc": "Prevents a mentioned user from chatting in text channels.",
+    "Desc": "Prevents a mentioned user from chatting in text channels. You can optionally specify a reason.",
     "Usage": [
-      "{0}chatmute @Someone"
+      "{0}chatmute @Someone",
+      "{0}chatmute @Someone stop writing"
     ]
   },
   "voicemute": {
     "Cmd": "voicemute",
-    "Desc": "Prevents a mentioned user from speaking in voice channels.",
+    "Desc": "Prevents a mentioned user from speaking in voice channels. User has to be in a voice channel in order for the command to have an effect. You can optionally specify a reason.",
     "Usage": [
-      "{0}voicemute @Someone"
+      "{0}voicemute @Someone",
+      "{0}voicemute @Someone stop talking"
     ]
   },
   "konachan": {
@@ -2004,7 +2009,7 @@
   },
   "setmuterole": {
     "Cmd": "setmuterole",
-    "Desc": "Sets a name of the role which will be assigned to people who should be muted. Default is TCU-mute.",
+    "Desc": "Sets a name of the role which will be assigned to people who should be muted. Default is nadeko-mute.",
     "Usage": [
       "{0}setmuterole Silenced"
     ]
@@ -2393,7 +2398,7 @@
   },
   "eventstart": {
     "Cmd": "eventstart",
-    "Desc": "Starts one of the events seen on public TCU. Events: `reaction`, `gamestatus`",
+    "Desc": "Starts one of the events seen on public nadeko. Events: `reaction`, `gamestatus`",
     "Usage": [
       "{0}eventstart reaction",
       "{0}eventstart reaction -d 1 -a 50 --pot-size 1500"
@@ -2415,7 +2420,7 @@
   },
   "slot": {
     "Cmd": "slot slots",
-    "Desc": "Play TCU slots. 1 second cooldown per user.",
+    "Desc": "Play Nadeko slots. 1 second cooldown per user.",
     "Usage": [
       "{0}slot 5"
     ]
@@ -2561,15 +2566,15 @@
   },
   "languagesetdefault": {
     "Cmd": "langsetdefault langsetd",
-    "Desc": "This command is disabled on public TCU, it currently only supports english, if you want to use all available languages for TCU, self-host the bot. (do `... selfhost`)",
+    "Desc": "Sets the bot's default response language. All servers which use a default locale will use this one. Setting to `default` will use the host's current culture. Provide no parameters to see currently set language.",
     "Usage": [
-      "{0}langsetd nl-NL",
+      "{0}langsetd en-US",
       "{0}langsetd default"
     ]
   },
   "languageset": {
     "Cmd": "languageset langset",
-    "Desc": "This command is disabled on public TCU, it currently only supports english, if you want to use all available languages for TCU, self-host the bot. (do `... selfhost`)",
+    "Desc": "Sets this server's response language. If bot's response strings have been translated to that language, bot will use that language in this server. Reset by using `default` as the locale name. Provide no parameters to see currently set language.",
     "Usage": [
       "{0}langset de-DE ",
       "{0}langset default"
@@ -2577,7 +2582,7 @@
   },
   "languageslist": {
     "Cmd": "languageslist langli",
-    "Desc": "This command is disabled on public TCU, it currently only supports english, if you want to use all available languages for TCU, self-host the bot. (do `... selfhost`)",
+    "Desc": "List of languages for which translation (or part of it) exist atm.",
     "Usage": [
       "{0}langli"
     ]
@@ -2652,7 +2657,7 @@
   },
   "alias": {
     "Cmd": "alias cmdmap",
-    "Desc": "Create a custom alias for a certain TCU command. Provide no alias to remove the existing one.",
+    "Desc": "Create a custom alias for a certain Nadeko command. Provide no alias to remove the existing one.",
     "Usage": [
       "{0}alias allin {0}bf all h",
       "{0}alias \"linux thingy\" >loonix Spyware Windows"
@@ -2917,7 +2922,7 @@
   },
   "botconfigedit": {
     "Cmd": "botconfigedit bce",
-    "Desc": "Sets one of available bot config settings to a specified value. Use the command without any parameters to get a list of available settings.",
+    "Desc": "Sets one of available bot config settings to a specified value. Use the command without any parameters to get a list of available settings, and their current values.",
     "Usage": [
       "{0}bce CurrencyName b1nzy",
       "{0}bce"
@@ -3133,7 +3138,7 @@
     "Cmd": "clubadmin",
     "Desc": "Assigns (or unassigns) staff role to the member of the club. Admins can ban, kick and accept applications.",
     "Usage": [
-      "{0}clubadmin"
+      "{0}clubadmin @b1nzy"
     ]
   },
   "autoboobs": {
@@ -3413,9 +3418,20 @@
   },
   "edit": {
     "cmd": "edit",
-    "desc": "Edits bot's message, you have to specify message ID and new text. Supports embeds.",
+    "desc": "Edits bot's message, you have to specify message ID and new text. You can optionally specify target channel. Supports embeds.",
     "usage": [
-      "{0}edit 7479498384 Hi :^)"
+      "{0}edit 7479498384 Hi :^)",
+      "{0}edit #other-channel 771562360594628608 New message!",
+      "{0}edit #other-channel 771562360594628608 {{\"description\":\"hello\"}}"
+    ]
+  },
+  "delete": {
+    "cmd": "delete del",
+    "desc": "Deletes a single message given the channel and message ID. If channel is ommited, message will be searched for in the current channel. You can also specify time parameter after which the message will be deleted (up to 7 days). This timer won't persist through bot restarts.",
+    "usage": [
+      "{0}del #chat 771562360594628608",
+      "{0}del 771562360594628608",
+      "{0}del 771562360594628608 5m"
     ]
   },
   "roleid": {
@@ -3431,6 +3447,13 @@
     "usage": [
       "{0}updatescheck commit",
       "{0}updatescheck release"
+    ]
+  },
+  "nsfwtoggle": {
+    "cmd": "nsfwtoggle nsfw nsfwtgl",
+    "desc": "Toggles the NSFW parameter of the current text channel.",
+    "usage": [
+      "{0}nsfwtoggle"
     ]
   },
   "economy": {
