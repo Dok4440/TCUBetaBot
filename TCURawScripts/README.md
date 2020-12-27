@@ -1,9 +1,7 @@
-**This version is currently unstable and the only way to make it work is by changing the code, I thus strongly recommend using the [stable version](https://github.com/Dok4440/TCURawScripts/tree/Latest_stable_version).**
-
 # TCURawScripts
-This github is the main repository for self-hosting Tea Cup Utilities. These shell files are all based on TCU's original (v1) build.
+This part of the GitLab repo is the main asset for self-hosting Tea Cup Utilities. These shell files are all based on TCU's original (v1) build.
 You can download these files and change them to your advantage, I don't offer support in any way regarding issues with these files.
-They're stable as they are on this github in the branch **"Latest_stable_version"**, so issues you caused yourself are your problem :')
+They're stable as they are on this GitLab in the branch **"1.0"**, so issues you caused yourself are your problem :')
 
 Thanks for using TCU <3
 
