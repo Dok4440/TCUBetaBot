@@ -232,17 +232,17 @@ namespace NadekoBot.Modules.Utility
 
             await ctx.Channel.EmbedAsync(
                 new EmbedBuilder().WithOkColor()
-                    .WithAuthor(eab => eab.WithName($"TCU v2.02.6")
-                                          .WithUrl("http://localhost/")
+                    .WithAuthor(eab => eab.WithName($"TCU v1.0")
+                                          .WithUrl("http://gotta_make_some_logo_or_smth")
                                           .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
                     .AddField(efb => efb.WithName(GetText("author")).WithValue("Dok#4440").WithIsInline(true))
-                    .AddField(efb => efb.WithName(GetText("shard")).WithValue("avg uptime: 99% - 01/12/2020").WithIsInline(true))
+                    //.AddField(efb => efb.WithName(GetText("shard")).WithValue("avg uptime: ").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("messages")).WithValue($"{_stats.MessageCounter} ({_stats.MessagesPerSecond:F2}/sec)").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("memory")).WithValue($"{_stats.Heap} MB").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("uptime")).WithValue(_stats.GetUptimeString("\n")).WithIsInline(true))
-                    .AddField(efb => efb.WithName(GetText("presence")).WithValue(
+                    /*.AddField(efb => efb.WithName(GetText("presence")).WithValue(
                         GetText("presence_txt",
-                            _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false);
+                            _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false); */
         }
 
         [NadekoCommand, Usage, Description, Aliases]
