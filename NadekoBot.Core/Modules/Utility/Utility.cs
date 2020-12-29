@@ -233,11 +233,6 @@ namespace NadekoBot.Modules.Utility
             await ctx.Channel.EmbedAsync(
                 new EmbedBuilder().WithOkColor()
                     .WithAuthor(eab => eab.WithName($"TCU v1.0")
-<<<<<<< Updated upstream
-                                          .WithUrl("http://gotta_make_some_logo_or_smth")
-=======
-                                          .WithUrl("http://localhost/")
->>>>>>> Stashed changes
                                           .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
                     .AddField(efb => efb.WithName(GetText("author")).WithValue("Dok#4440").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("shard")).WithValue("avg uptime: ").WithIsInline(true))
