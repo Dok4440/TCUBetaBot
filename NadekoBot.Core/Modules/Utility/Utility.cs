@@ -240,9 +240,9 @@ namespace NadekoBot.Modules.Utility
                     .AddField(efb => efb.WithName(GetText("messages")).WithValue($"{_stats.MessageCounter} ({_stats.MessagesPerSecond:F2}/sec)").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("memory")).WithValue($"{_stats.Heap} MB").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("uptime")).WithValue(_stats.GetUptimeString("\n")).WithIsInline(true))
-                    /*.AddField(efb => efb.WithName(GetText("presence")).WithValue(
+                    .AddField(efb => efb.WithName(GetText("presence")).WithValue(
                         GetText("presence_txt",
-                            _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false); */
+                            _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false);
         }
 
         [NadekoCommand, Usage, Description, Aliases]
