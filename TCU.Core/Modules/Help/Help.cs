@@ -251,8 +251,8 @@ namespace NadekoBot.Modules.Help
         public async Task Guide()
         {
             await ConfirmLocalizedAsync("guide",
-                "https://nadeko.bot/commands",
-                "http://nadekobot.readthedocs.io/en/latest/").ConfigureAwait(false);
+                "https://gitlab.com/Dok4440/TCUBetaBot",
+                "https://gitlab.com/Dok4440/TCUBetaBot/-/wikis/home").ConfigureAwait(false);
         }
 
         [NadekoCommand, Usage, Description, Aliases]

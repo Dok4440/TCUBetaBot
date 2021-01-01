@@ -254,7 +254,7 @@
   "help_desc": "Description",
   "help_cant_dm": "I can't dm you. Make sure your DMs are open. Go to **options (cog button) -> Privacy & Safety -> Allow direct messages from server members**",
   "help_donate": "You currently cannot support TCU financially in any way, updates on this to be expected soon!",
-  "help_guide": "**List of commands**: <{0}>\n**Hosting guides and docs can be found here**: <{1}>",
+  "help_guide": "**GitLab Repository**: <{0}>\n**Hosting guides and docs can be found here**: <{1}>",
   "help_list_of_commands": "List of commands",
   "help_list_of_modules": "List of modules",
   "help_modules_footer": "Type `{0}cmds ModuleName` to get a list of commands in that module. eg `{0}cmds games`",
