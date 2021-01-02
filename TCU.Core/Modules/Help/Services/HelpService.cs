@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace NadekoBot.Modules.Help.Services
 {
-    public class HelpService : ILateExecutor, INService
+    public class HelpService :/*ILateExecutor, */INService
     {
         private readonly IBotConfigProvider _bc;
         private readonly CommandHandler _ch;
@@ -31,24 +31,27 @@ namespace NadekoBot.Modules.Help.Services
             _log = LogManager.GetCurrentClassLogger();
         }
 
-        public Task LateExecute(DiscordSocketClient client, IGuild guild, IUserMessage msg)
-        {
-            try
-            {
-                if (guild == null)
-                {
-                    if (CREmbed.TryParse(_bc.BotConfig.DMHelpString, out var embed))
-                        return msg.Channel.EmbedAsync(embed.ToEmbed(), embed.PlainText?.SanitizeMentions() ?? "");
 
-                    return msg.Channel.SendMessageAsync(_bc.BotConfig.DMHelpString);
-                }
-            }
-            catch (Exception ex)
-            {
-                _log.Warn(ex);
-            }
-            return Task.CompletedTask;
-        }
+        // To enable "DMHelpString" in .bce & database -> uncomment this & the commented part on line 19 (TCU doesn't support fixes for this, so an errored DMHelpString is to fix yourself)
+
+        // public Task LateExecute(DiscordSocketClient client, IGuild guild, IUserMessage msg)
+        // {
+        //     try
+        //     {
+        //         if (guild == null)
+        //         {
+        //             if (CREmbed.TryParse(_bc.BotConfig.DMHelpString, out var embed))
+        //                 return msg.Channel.EmbedAsync(embed.ToEmbed(), embed.PlainText?.SanitizeMentions() ?? "");
+
+        //             return msg.Channel.SendMessageAsync(_bc.BotConfig.DMHelpString);
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _log.Warn(ex);
+        //     }
+        //     return Task.CompletedTask;
+        //}
 
         public EmbedBuilder GetCommandHelp(CommandInfo com, IGuild guild)
         {
