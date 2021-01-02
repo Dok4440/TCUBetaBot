@@ -679,6 +679,13 @@
       "{0}stats"
     ]
   },
+  "version":{
+    "Cmd": "version",
+    "Desc": "Shows TCU's current version",
+    "Usage": [
+      "{0}version"
+    ]
+  },
   "userid": {
     "Cmd": "userid uid",
     "Desc": "Shows user ID.",

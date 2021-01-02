@@ -244,6 +244,16 @@ namespace NadekoBot.Modules.Utility
                             _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false);
         }
 
+        // Version command
+        [NadekoCommand, Usage, Description, Aliases]
+        public async Task Version()
+        {
+            await ctx.Channel.EmbedAsync(
+                new EmbedBuilder().WithOkColor()
+                .WithAuthor(eab => eab.WithName($"TCU v1.1a"))
+            );
+        }
+
         [NadekoCommand, Usage, Description, Aliases]
         public async Task Showemojis([Leftover] string _) // need to have the parameter so that the message.tags gets populated
         {
