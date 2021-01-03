@@ -352,6 +352,13 @@
       "{0}restart"
     ]
   },
+  "demote": {
+    "Cmd": "demote",
+    "Desc": "Demotes a staff member, currently only works in the Tea Cup server.",
+    "Usage": [
+      "{0}demote @Pika"
+    ]
+  },
   "setrole": {
     "Cmd": "setrole sr giverole",
     "Desc": "Gives a role to a user. The role you specify has to be lower in the role hierarchy than your highest role.",

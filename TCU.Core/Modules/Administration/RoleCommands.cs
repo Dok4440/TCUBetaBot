@@ -157,6 +157,64 @@ namespace NadekoBot.Modules.Administration
                 await ReplyConfirmLocalizedAsync("reaction_role_removed", index + 1).ConfigureAwait(false);
             }
 
+	        // Demote Command
+	        [NadekoCommand, Usage, Description, Aliases]
+            [RequireContext(ContextType.Guild)]
+            [UserPerm(GuildPerm.Administrator)]
+            [BotPerm(GuildPerm.ManageRoles)]
+            public async Task Demote(IGuildUser targetUser)
+            {
+                if(ctx.Guild.Id != 706492309604401206)
+                    {
+                        await ReplyConfirmLocalizedAsync("version_error").ConfigureAwait(false);
+                        return;
+                    }
+
+                // Remove old role
+                var runnerUser2 = (IGuildUser)ctx.User;
+
+                var roleToRemoveCook = Context.Guild.GetRole(706503570622775332);
+                var roleToRemoveAssistant = Context.Guild.GetRole(706543395044327545);
+                var roleToRemoveTrialAssistant = Context.Guild.GetRole(706543894288007209);
+
+                if (ctx.User.Id != runnerUser2.Guild.OwnerId && 
+                (runnerUser2.GetRoles().Max(x => x.Position) <= roleToRemoveCook.Position) || 
+                (runnerUser2.GetRoles().Max(x => x.Position) <= roleToRemoveAssistant.Position) || 
+                (runnerUser2.GetRoles().Max(x => x.Position) <= roleToRemoveTrialAssistant.Position))
+                       return;
+                   try
+                    {
+                       await targetUser.RemoveRoleAsync(roleToRemoveCook).ConfigureAwait(false);
+                       await targetUser.RemoveRoleAsync(roleToRemoveAssistant).ConfigureAwait(false);
+                       await targetUser.RemoveRoleAsync(roleToRemoveTrialAssistant).ConfigureAwait(false);
+
+                       await ReplyConfirmLocalizedAsync("demote_remrole").ConfigureAwait(false);
+                }
+                   catch
+                    {
+                      await ReplyErrorLocalizedAsync("version_error").ConfigureAwait(false);
+                }
+            
+
+                // Add new role
+                var runnerUser1 = (IGuildUser)ctx.User;
+                var runner1MaxRolePosition = runnerUser1.GetRoles().Max(x => x.Position);
+                var roleToAdd = Context.Guild.GetRole(706543395044327545);
+
+                if ((ctx.User.Id != ctx.Guild.OwnerId) && runner1MaxRolePosition <= roleToAdd.Position)
+                   return;
+                try
+                {
+                await targetUser.AddRoleAsync(roleToAdd).ConfigureAwait(false);
+                // await ReplyConfirmLocalizedAsync("demote_addrole").ConfigureAwait(false); <- uncomment this for an extra confirmation the command is succeeding.
+                }
+                catch (Exception ex)
+                {
+                       await ReplyErrorLocalizedAsync("version_error").ConfigureAwait(false);
+                        _log.Info(ex);
+                }
+            }
+
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
             [UserPerm(GuildPerm.ManageRoles)]
