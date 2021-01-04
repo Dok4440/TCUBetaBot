@@ -542,35 +542,34 @@ namespace NadekoBot.Modules.Administration
                         .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
                     .ConfigureAwait(false);
             }
-            
-            // does not exist but it's here for pure nostalgia (and if softban fails on me)
-            [NadekoCommand, Usage, Description, Aliases]
-            [RequireContext(ContextType.Guild)]
-            [UserPerm(GuildPerm.KickMembers)]
-            [BotPerm(GuildPerm.KickMembers)]
-            public async Task Kick(IGuildUser user, [Leftover] string msg = null)
-            {
-                if (ctx.Message.Author.Id != user.Guild.OwnerId && user.GetRoles().Select(r => r.Position).Max() >= ((IGuildUser)ctx.User).GetRoles().Select(r => r.Position).Max())
-                {
-                    await ReplyErrorLocalizedAsync("hierarchy").ConfigureAwait(false);
-                    return;
-                }
-                if (!string.IsNullOrWhiteSpace(msg))
-                {
-                    try
-                    {
-                        await user.SendErrorAsync(GetText("kickdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
-                    }
-                    catch { }
-                }
 
-                await user.KickAsync(ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
-                await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle(GetText("kicked_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
-                    .ConfigureAwait(false);
-            }
+            // [NadekoCommand, Usage, Description, Aliases]
+            // [RequireContext(ContextType.Guild)]
+            // [UserPerm(GuildPerm.KickMembers)]
+            // [BotPerm(GuildPerm.KickMembers)]
+            // public async Task Kick(IGuildUser user, [Leftover] string msg = null)
+            // {
+            //     if (ctx.Message.Author.Id != user.Guild.OwnerId && user.GetRoles().Select(r => r.Position).Max() >= ((IGuildUser)ctx.User).GetRoles().Select(r => r.Position).Max())
+            //     {
+            //         await ReplyErrorLocalizedAsync("hierarchy").ConfigureAwait(false);
+            //         return;
+            //     }
+            //     if (!string.IsNullOrWhiteSpace(msg))
+            //     {
+            //         try
+            //         {
+            //             await user.SendErrorAsync(GetText("kickdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
+            //         }
+            //         catch { }
+            //     }
+            //
+            //     await user.KickAsync(ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
+            //     await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
+            //             .WithTitle(GetText("kicked_user"))
+            //             .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
+            //             .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
+            //         .ConfigureAwait(false);
+            // }
 
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
