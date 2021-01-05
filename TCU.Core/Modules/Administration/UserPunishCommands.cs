@@ -366,7 +366,7 @@ namespace NadekoBot.Modules.Administration
             }
 
 
-            // ban
+            // ban (WITH TIME SPECIFIED) -> TCU will give an error as of v1.1b, fixing this later.
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
             [UserPerm(GuildPerm.BanMembers)]
@@ -398,12 +398,13 @@ namespace NadekoBot.Modules.Administration
                         .WithTitle("⛔️ " + GetText("banned_user"))
                         .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
                         .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true))
+                        .AddField(efb => efb.WithName(GetText("banned_reason")).WithValue(msg.ToString()).WithIsInline(false))
                         .WithFooter($"{time.Time.Days}d {time.Time.Hours}h {time.Time.Minutes}m"))
                     .ConfigureAwait(false);
             }
 
 
-            // ban (what the fuck is my life at this point)
+            // normal ban command
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
             [UserPerm(GuildPerm.BanMembers)]
@@ -418,7 +419,9 @@ namespace NadekoBot.Modules.Administration
 
                     await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                             .WithTitle("⛔️ " + GetText("banned_user"))
-                            .AddField(efb => efb.WithName("ID").WithValue(userId.ToString()).WithIsInline(true)))
+                            .AddField(efb => efb.WithName("ID").WithValue(userId.ToString()).WithIsInline(false))
+                            .AddField(efb => efb.WithName(GetText("banned_reason")).WithValue(msg ?? "-").WithIsInline(true))
+                            .AddField(efb => efb.WithName(GetText("banned_moderator")).WithValue(ctx.User.ToString()).WithIsInline(true)))
                         .ConfigureAwait(false);
                 }
                 else
@@ -427,6 +430,7 @@ namespace NadekoBot.Modules.Administration
                 }
             }
 
+            // banDM
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
             [UserPerm(GuildPerm.BanMembers)]
@@ -454,8 +458,9 @@ namespace NadekoBot.Modules.Administration
                 await ctx.Guild.AddBanAsync(user, 7, ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
                 await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                         .WithTitle("⛔️ " + GetText("banned_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
+                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(false))
+                        .AddField(efb => efb.WithName(GetText("banned_reason")).WithValue(msg ?? "-").WithIsInline(true))
+                        .AddField(efb => efb.WithName(GetText("banned_moderator")).WithValue(ctx.User.ToString()).WithIsInline(true)))
                     .ConfigureAwait(false);
             }
 
