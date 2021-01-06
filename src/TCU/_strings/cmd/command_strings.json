@@ -687,7 +687,7 @@
     ]
   },
   "version":{
-    "Cmd": "version",
+    "Cmd": "version v",
     "Desc": "Shows TCU's current version",
     "Usage": [
       "{0}version"
@@ -795,7 +795,7 @@
     ]
   },
   "verbose": {
-    "Cmd": "verbose v",
+    "Cmd": "verbose",
     "Desc": "Toggles or sets whether to show when a command/module is blocked.",
     "Usage": [
       "{0}v",
