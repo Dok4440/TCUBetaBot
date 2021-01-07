@@ -236,12 +236,22 @@ namespace NadekoBot.Modules.Utility
                                           .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
                     .AddField(efb => efb.WithName(GetText("author")).WithValue("Dok#4440").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("shard")).WithValue("true").WithIsInline(true))
-                    .AddField(efb => efb.WithName(GetText("messages")).WithValue($"{_stats.MessageCounter} ({_stats.MessagesPerSecond:F2}/sec)").WithIsInline(true))
+                    .AddField(efb => efb.WithName(GetText("messages")).WithValue($"{_stats.MessageCounter}").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("memory")).WithValue($"{_stats.Heap} MB").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("uptime")).WithValue(_stats.GetUptimeString("\n")).WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("presence")).WithValue(
                         GetText("presence_txt",
                             _bot.GuildCount, _stats.TextChannels, _stats.VoiceChannels)).WithIsInline(true))).ConfigureAwait(false);
+        }
+
+        [NadekoCommand, Usage, Description, Aliases]
+        public async Task uptime()
+        {
+          await ctx.Channel.EmbedAsync(
+            new EmbedBuilder().WithOkColor()
+            .WithAuthor(eab => eab.WithName(GetText("version_shower"))
+                                  .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
+            .AddField(efb => efb.WithName(GetText("uptime")).WithValue(_stats.GetUptimeString()).WithIsInline(true))).ConfigureAwait(false);
         }
 
         // Version command

@@ -686,6 +686,13 @@
       "{0}stats"
     ]
   },
+  "uptime": {
+    "Cmd": "uptime",
+    "Desc": "Shows TCU's uptime since last boot.",
+    "Usage": [
+      "{0}uptime"
+    ]
+  },
   "version":{
     "Cmd": "version v",
     "Desc": "Shows TCU's current version",
