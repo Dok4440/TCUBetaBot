@@ -359,6 +359,13 @@
       "{0}demote @Pika"
     ]
   },
+  "promote": {
+    "Cmd": "promote",
+    "Desc": "Promotes a staff member, currently only works in the Tea Cup server.",
+    "Usage": [
+      "{0}promote @Dok"
+    ]
+  },
   "setrole": {
     "Cmd": "setrole sr giverole",
     "Desc": "Gives a role to a user. The role you specify has to be lower in the role hierarchy than your highest role.",
