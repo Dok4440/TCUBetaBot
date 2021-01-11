@@ -517,7 +517,7 @@ namespace NadekoBot.Modules.Administration
             [UserPerm(GuildPerm.KickMembers)]       // KICK MEMBERS BECAUSE KICK ISNT A THING IN TCU GOT IT?
             [UserPerm(GuildPerm.ManageMessages)]
             [BotPerm(GuildPerm.BanMembers)]
-            public async Task Softban(IGuildUser user, [Leftover] string msg = null)
+            public async Task Softban(IGuildUser user, [Leftover] string msg = null) // not aliased here, bc well, strings exist :')
             {
                 if (ctx.User.Id != user.Guild.OwnerId && user.GetRoles().Select(r => r.Position).Max() >= ((IGuildUser)ctx.User).GetRoles().Select(r => r.Position).Max())
                 {
@@ -528,7 +528,7 @@ namespace NadekoBot.Modules.Administration
                 if (!string.IsNullOrWhiteSpace(msg))
                 {
                     try
-                    {
+                    {//dm
                         await user.SendErrorAsync(GetText("sbdm", Format.Bold(ctx.Guild.Name), msg)).ConfigureAwait(false);
                     }
                     catch
@@ -537,15 +537,17 @@ namespace NadekoBot.Modules.Administration
                     }
                 }
 
-                await ctx.Guild.AddBanAsync(user, 7, ctx.User.ToString() + " | " + msg).ConfigureAwait(false);
+                await ctx.Guild.AddBanAsync(user, 7, ctx.User.ToString() + " | " + "softban / kick" + " | " + msg).ConfigureAwait(false);
+
                 try { await ctx.Guild.RemoveBanAsync(user).ConfigureAwait(false); }
                 catch { await ctx.Guild.RemoveBanAsync(user).ConfigureAwait(false); }
 
                 await ctx.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                        .WithTitle("☣ " + GetText("sb_user"))
-                        .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(true))
-                        .AddField(efb => efb.WithName("ID").WithValue(user.Id.ToString()).WithIsInline(true)))
-                    .ConfigureAwait(false);
+                          .WithTitle("☣ " + GetText("sb_user"))
+                          .AddField(efb => efb.WithName(GetText("username")).WithValue(user.ToString()).WithIsInline(false))
+                          .AddField(efb => efb.WithName(GetText("banned_reason")).WithValue(msg ?? "-").WithIsInline(true))
+                          .AddField(efb => efb.WithName(GetText("banned_moderator")).WithValue(ctx.User.ToString()).WithIsInline(true)))
+                      .ConfigureAwait(false);
             }
 
             // [NadekoCommand, Usage, Description, Aliases]

@@ -433,15 +433,8 @@
     ]
   },
   "softban": {
-    "Cmd": "softban sb",
-    "Desc": "Bans and then unbans a user by ID or name with an optional message.",
-    "Usage": [
-      "{0}sb \"@some Guy\" Your behaviour is toxic."
-    ]
-  },
-  "kick": {
-    "Cmd": "kick k",
-    "Desc": "Kick is not a TCU command (atm) because Discord doesn't log kicks. To 'kick' someone, please use `.softban` or `.sb`. This bans a user and unbans them immediatly. TCU will log this to the 'userBanned' logevent. To use the kick command: do `... selfhost`",
+    "Cmd": "softban sb kick k",
+    "Desc": "Bans and then unbans a user by ID or name with an optional message. There is no kick command in TCU, so it's aliased as softban.",
     "Usage": [
       "{0}sb \"@some Guy\" Your behaviour is toxic."
     ]
