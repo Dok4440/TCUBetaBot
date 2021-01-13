@@ -25,10 +25,19 @@ This error can appear as "No custom reaction found" & "No custom reaction found 
 *For people who are really weird (yes there's quite a few)*; if you really want to use any CR command on an unexisting custom reaction. You can make one. do `.h acr`
 
 ## FAQ
-**Why aren't these numbers adding up / making sense?**  
+### Why aren't these numbers adding up / making sense?  
 The errors are not numbered in terms of addition; it does not start with zero and adds up similarly. The numbering is based on the number of the line in the [ResponseStrings](https://gitlab.com/Dok4440/TCUBetaBot/-/blob/develop/src/TCU/_strings/ResponseStrings.en-US.json). This makes it easier to modify when you host the bot yourself.
 
-**I'm still confused as to what the heck my error means..**  
-No problem :), [TCU's support server](https://discord.gg/bYGcGCCRr2) is ready for you!
+### I'm still confused as to what the heck my error means..  
+No problem :), [TCU's support server](https://discord.gg/bYGcGCCRr2) is ready for you!  
+
+### Why isn't there any information on NSFW errors?     
+As Dok tries to keep everything, apart from actual NSFW Discord channels, safe for work, we're not giving any "extra" support on any commands and/or issues within the NSFW module. Must there be an *actual* bug in that module happening on public TCU, you can report this in [TCU's support server](https://discord.gg/bYGcGCCRr2).
+
+### I'm trying to do a command, but it doesn't reply or show me any error, why?  
+First off. TCU does not always reply to a "wrongly" done command, if you do want TCU to do this, check out our "verbose error" command by doing `.h ve`. Back to the question, there's a couple things that could have gone wrong here.
+
+- You're selfhosting & the bot isn't running while you *think* it is. Check your console. If it's running, check for errors & report them in [TCU's support server](https://discord.gg/bYGcGCCRr2).
+- You're using public TCU & you're unsure if the bot if down or not. In TCU's support server, check #support, if the bot is down **it will always be noted there**. Must it be online and you can't do command(s), contact that same channel as well.
 
 
