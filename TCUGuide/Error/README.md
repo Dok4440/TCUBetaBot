@@ -38,6 +38,6 @@ As Dok tries to keep everything, apart from actual NSFW Discord channels, safe f
 First off. TCU does not always reply to a "wrongly" done command, if you do want TCU to do this, check out our "verbose error" command by doing `.h ve`. Back to the question, there's a couple things that could have gone wrong here.
 
 - You're selfhosting & the bot isn't running while you *think* it is. Check your console. If it's running, check for errors & report them in [TCU's support server](https://discord.gg/bYGcGCCRr2).
-- You're using public TCU & you're unsure if the bot if down or not. In TCU's support server, check #support, if the bot is down **it will always be noted there**. Must it be online and you can't do command(s), contact that same channel as well.
+- You're using public TCU & you're unsure if the bot is down or not. In TCU's support server, check #support, for bot downtime. **It will always be noted there**. Must it be online and you can't do command(s), contact that same channel as well.
 
 
