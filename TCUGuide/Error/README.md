@@ -19,7 +19,10 @@ if (!AdminInGuildOrOwnerInDm())
 ```  
 Comment out or edit [this](https://gitlab.com/Dok4440/TCUBetaBot/-/blob/develop/TCU.Core/Modules/CustomReactions/CustomReactions.cs#L38) in the source
 
+## TCU_err_08 - No custom reaction found.
+This error can appear as "No custom reaction found" & "No custom reaction found with that ID". Both of these errors mean you've been specifying or searching for a custom reaction that does not exist. The easiest way to "solve" this problem is by doing `.lcr`. This lists all custom reactions in the current server. And when done in DMs, it lists all global custom reactions (when you're a bot owner, `...selfhost`).
 
+*For people who are really weird (yes there's quite a few)*; if you really want to use any CR command on an unexisting custom reaction. You can make one. do `.h acr`
 
 ## FAQ
 **Why aren't these numbers adding up / making sense?**  
