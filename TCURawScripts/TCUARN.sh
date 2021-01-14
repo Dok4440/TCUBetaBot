@@ -10,7 +10,7 @@ dotnet restore && dotnet build -c Release
 
 while :; do cd "$root/TCU/src/NadekoBot" && dotnet run -c Release && youtube-dl -U; sleep 5s; done
 echo ""
-echo "That didn't work? Please report to Dok#4440 on Discord."
+echo "That didn't work? Please report in TCU's support server."
 sleep 3s
 
 cd "$root"

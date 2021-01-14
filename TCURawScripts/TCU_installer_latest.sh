@@ -9,7 +9,6 @@ then
 else
     clear
     echo "Git is not installed."
-    echo 'Git installation; "sudo apt-get install git"'
     echo ""
     echo 'Press CTRL + C to exit.'
     echo "Program will automatically exit after 60 seconds."
@@ -25,7 +24,6 @@ then
 else
     echo ""
     echo "Dotnet is not installed."
-    echo 'Dotnet installation; "https://dotnet.microsoft.com/download"'
     echo ""
     echo 'Press CTRL + C to exit.'
     echo "Program will automatically exit after 60 seconds."
@@ -45,7 +43,7 @@ echo "Downloading TCU, please wait."
 echo ""
 echo "This process usually takes about 15 seconds."
 sleep 5s
-git clone -b 1.0 --recursive --depth 1 https://gitlab.com/Dok4440/TCUBetaBot
+git clone -b develop --recursive --depth 1 https://gitlab.com/Dok4440/TCUBetaBot
 clear
 echo "TCU downloaded."
 

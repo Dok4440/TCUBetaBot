@@ -11,7 +11,6 @@ then
 else
 	clear
 	echo "Git is not installed."
-	echo 'Git installation; "sudo apt-get install git"'
 	echo ""
 	echo 'Press CTRL + C to exit.'
 	echo "Program will automatically exit after 60 seconds."

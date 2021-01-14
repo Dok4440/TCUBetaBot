@@ -1,21 +1,21 @@
 **This version is currently unstable and the only way to make it work is by changing the code, I thus strongly recommend using the [stable version](https://github.com/Dok4440/TCURawScripts/tree/Latest_stable_version).**
 
 # TCURawScripts
-This github is the main repository for self-hosting Tea Cup Utilities. These shell files are all based on TCU's original (v1) build.
+This GitLab Folder is the main "part" for self-hosting Tea Cup Utilities. These shell files are all based on TCU's original (v1) build and on.
 You can download these files and change them to your advantage, I don't offer support in any way regarding issues with these files.
-They're stable as they are on this github in the branch **"Latest_stable_version"**, so issues you caused yourself are your problem :')
+They're stable as they are on the "develop" branch, so issues you caused yourself are your problem :')
 
 Thanks for using TCU <3
 
-## The Build ##
+## The Build
 This `.sh` files will deal with all installations for you!
 
-**Please note that these files only support Linux, supported distros include; Debian, Ubuntu, CentOS.**
+**Please note that these files only support Linux (for now), supported distros include; Debian, Ubuntu, CentOS.**
 
 Use the following command to get started:  
 
 
-`cd ~ && wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/1.0/TCURawScripts/linuxAIO.sh && bash linuxAIO.sh`
+`cd ~ && wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/develop/TCURawScripts/linuxAIO.sh && bash linuxAIO.sh`
 
 
 If everything went right, a menu will show up.
@@ -26,4 +26,4 @@ If everything went right, a menu will show up.
 
 
 The `shell` files are pretty self explanatory, to start the bot; either select `option 2, 3 or 7`  
-If you do happen to come across any problems running the bot, without having changed the `.sh` files or any TCU files that may affect your download, please contact Dok#4440 on Discord.
+If you do happen to come across any problems running the bot, without having changed the `.sh` files or any TCU files that may affect your download, please join [TCU's support server](https://discord.com/invite/bYGcGCCRr2).
