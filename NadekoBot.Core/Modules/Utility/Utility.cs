@@ -233,7 +233,7 @@ namespace NadekoBot.Modules.Utility
             await ctx.Channel.EmbedAsync(
                 new EmbedBuilder().WithOkColor()
                     .WithAuthor(eab => eab.WithName(GetText("version_shower"))
-                                          .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
+                                          .WithIconUrl("https://i.imgur.com/ObrpDXp.png"))
                     .AddField(efb => efb.WithName(GetText("author")).WithValue("Dok#4440").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("shard")).WithValue("true").WithIsInline(true))
                     .AddField(efb => efb.WithName(GetText("messages")).WithValue($"{_stats.MessageCounter}").WithIsInline(true))
@@ -250,7 +250,7 @@ namespace NadekoBot.Modules.Utility
           await ctx.Channel.EmbedAsync(
             new EmbedBuilder().WithOkColor()
             .WithAuthor(eab => eab.WithName(GetText("version_shower"))
-                                  .WithIconUrl("https://cdn.discordapp.com/icons/706492309604401206/a_29b41110aad9a29181cfd46a29a1ab19.webp?size=128"))
+                                  .WithIconUrl("https://i.imgur.com/ObrpDXp.png"))
             .AddField(efb => efb.WithName(GetText("uptime")).WithValue(_stats.GetUptimeString()).WithIsInline(true))).ConfigureAwait(false);
         }
 
