@@ -71,7 +71,7 @@ cd "$root" || return
 
 if [ ! -d TCU ]
 then
-    mv "$tempdir"/NadekoBot TCU
+    mv "$tempdir"/TCUBetaBot TCU
 
 else
     echo 'You already have a directory called "TCU" in this folder.'
