@@ -52,7 +52,7 @@ echo "Downloading TCU dependencies"
 echo ""
 echo "This process usually takes about 10 seconds."
 sleep 5s
-cd "$root/$tempdir/NadekoBot" || return
+cd "$root/$tempdir/TCUBetaBot" || echo "what?"; sleep 500
 dotnet restore
 clear
 echo "TCU Dependecies are downloaded"
