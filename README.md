@@ -15,4 +15,26 @@ There's a couple things we'll be addressing **in this README.md file**, all othe
 - JSON Explanations
 - Bot Config Explanations
 
+## Setting up TCU On Linux, Windows & MacOS
+### Linux
+
+Use the following command to get started:  
+
+`cd ~ && wget -N https://gitlab.com/Dok4440/TCUBetaBot/-/raw/develop/TCURawScripts/linuxAIO.sh && bash linuxAIO.sh`
+
+
+If everything went right, a menu will show up.
+1. If you haven't installed the bot files yet, choose `option 1`  
+2. If you're running TCU for the first time on your system, select `option 4` to install all prerequisites  
+3. If you're looking to run TCU on pm2, select `option 6` to install the right version  
+4. Last but not least, you'll have to fill in all the information you want to add for the bot to run, select `option 5`  
+
+
+The `shell` files are pretty self explanatory, to start the bot; either select `option 2, 3 or 7`  
+If you do happen to come across any problems running the bot, without having changed the `.sh` files or any TCU files that may affect your download, please join [TCU's support server](https://discord.com/invite/bYGcGCCRr2).
+
+### Windows & MacOS
+TCU isn't officially supported on Windows & Mac *yet*. I will be updating this soon & add a guide to **this** README.md. Regardless of it's "unsupported" state, you can still self-host TCU on these operating systems. Have a look at the Linux guide & you *should* be able to figure this one out.
+
+
 *Under construction ;)*
