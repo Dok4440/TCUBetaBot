@@ -140,6 +140,90 @@ namespace NadekoBot.Modules.Searches
             await ctx.Channel.EmbedAsync(embed).ConfigureAwait(false);
         }
 
+        [NadekoCommand, Usage, Description, Aliases]
+        public async Task Art()
+        {
+          await ctx.Channel.EmbedAsync(
+              new EmbedBuilder().WithOkColor()
+                  .WithAuthor(eab => eab.WithName("TCU's Art Collection")
+                                        .WithIconUrl("https://i.imgur.com/s4kVg9v.png"))
+                  .WithDescription(GetText("art"))
+                  .WithThumbnailUrl("https://i.imgur.com/hPSnttQ.png")
+                  .WithFooter(efb => efb.WithText("Thanks for using TCU <3")
+                                        .WithIconUrl($"https://i.imgur.com/aZlqVi6.png")));
+
+        }
+
+        [NadekoCommand, Usage, Description, Aliases]
+        public async Task Useless()
+        {
+              try
+              {
+                  var msg = await ctx.Channel.SendMessageAsync("Fetching a useless website...").ConfigureAwait(false);
+                  msg.DeleteAfter(3);
+
+                  string[] uselessWebsiteURL = // will continue to update this list whenever i'm in the mood.
+                  {
+                      "http://eelslap.com/",
+                      "https://cant-not-tweet-this.com/",
+                      "http://burymewithmymoney.com/",
+                      "https://heeeeeeeey.com/",
+                      "https://alwaysjudgeabookbyitscover.com/",
+                      "https://smashthewalls.com/",
+                      "http://endless.horse/",
+                      "https://trypap.com/",
+                      "https://weirdorconfusing.com/",
+                      "http://www.partridgegetslucky.com/",
+                      "https://jacksonpollock.org/",
+                      "http://corndog.io/",
+                      "http://www.staggeringbeauty.com/",
+                      "http://www.everydayim.com/",
+                      "http://www.koalastothemax.com/",
+                      "http://www.republiquedesmangues.fr/",
+                      "http://randomcolour.com/",
+                      "http://www.rrrgggbbb.com/",
+                      "https://thatsthefinger.com/",
+                      "http://ninjaflex.com/",
+                      "https://thezen.zone/",
+                      "http://hasthelargehadroncolliderdestroyedtheworldyet.com/",
+                      "http://www.movenowthinklater.com/",
+                      "http://corndogoncorndog.com/",
+                      "https://imaninja.com/",
+                      "https://cat-bounce.com/",
+                      "http://ihasabucket.com/",
+                      "https://chrismckenzie.com/",
+                      "http://drawing.garden/",
+                      "https://nullingthevoid.com/"
+                  };
+                  Random rand = new Random();
+                  int index = rand.Next(uselessWebsiteURL.Length);
+                  int rand_num = rand.Next(1,3);
+
+                  await Task.Delay(3000).ConfigureAwait(false);
+
+                  if (rand_num != 1)
+                  {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                            .WithAuthor(eab => eab.WithName("An Absolutely Useless Website For Ya!"))
+                            .WithDescription(uselessWebsiteURL[index]));
+                  }
+                  else
+                  {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                            .WithAuthor(eab => eab.WithName("An Absolutely Useless Website For Ya!"))
+                            .WithDescription(uselessWebsiteURL[index])
+                           .WithFooter(efb => efb.WithText("If you wish to add an epic website to this epic list, do .adduselesswebsite! <3")));
+                  }
+
+              }
+              catch
+              {
+                  await ReplyErrorLocalizedAsync("uselessWebsite_error").ConfigureAwait(false);
+              }
+        }
+
         // done in 3.0
         [NadekoCommand, Usage, Description, Aliases]
         public async Task Time([Leftover] string query)

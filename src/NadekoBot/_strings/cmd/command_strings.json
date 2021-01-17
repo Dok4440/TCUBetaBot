@@ -805,7 +805,6 @@
     "Cmd": "verbose",
     "Desc": "Toggles or sets whether to show when a command/module is blocked.",
     "Usage": [
-      "{0}v",
       "{0}verbose true"
     ]
   },
@@ -1606,6 +1605,20 @@
     "Desc": "Shows weather data for a specified city. You can also specify a country after a comma.",
     "Usage": [
       "{0}we Moscow, RU"
+    ]
+  },
+  "art": {
+    "Cmd": "art artwork",
+    "Desc": "Shows information about TCU's artwork collection.",
+    "Usage": [
+      "{0}art"
+    ]
+  },
+  "useless": {
+    "Cmd": "useless uselesswebsite",
+    "Desc": "Shows a random useless website, if you wish to add a website to the list, do `.adduselesswebsite`.",
+    "Usage": [
+      "{0}useless"
     ]
   },
   "youtube": {
