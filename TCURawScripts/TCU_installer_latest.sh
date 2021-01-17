@@ -100,7 +100,7 @@ else
         echo ""
         echo "Database copied to the new version"
         echo "Copying other data to the new version"
-        cp -RT "$root/TCU_Old/src/NadekoBot/data/" "$root/TCU/src/NadekoBot/data/" 1>/dev/null 2>&1
+        cp -RT "$root/TCU_Old/src/NadekoBot/data/" "$root/TCU/src/NadekoBot/data/" # 1>/dev/null 2>&1
         echo ""
         echo "Other data copied to the new version"
         sleep 3s
