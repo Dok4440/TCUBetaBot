@@ -99,10 +99,10 @@ else
         mv -f "$root/TCU/src/NadekoBot/bin/Release/netcoreapp2.0/data/NadekoBot.db" "$root/TCU/src/NadekoBot/bin/Release/netcoreapp2.0/data/TCU_Old.db" 1>/dev/null 2>&1
         echo ""
         echo "Database copied to the new version"
-        echo "Copying other data to the new version"
-        cp -RT "$root/TCU_Old/src/NadekoBot/data/" "$root/TCU/src/NadekoBot/data/" # 1>/dev/null 2>&1
-        echo ""
-        echo "Other data copied to the new version"
+        # echo "Copying other data to the new version"
+        # cp -RT "$root/TCU_Old/src/NadekoBot/data/" "$root/TCU/src/NadekoBot/data/" 1>/dev/null 2>&1 # uncomment if you want data to copy from old
+        # echo ""
+        # echo "Other data copied to the new version"
         sleep 3s
 fi
 
