@@ -104,8 +104,7 @@ else
         echo ""
         echo "Other data copied to the new version"
         sleep 3s
-
-done 
+fi
 
 rm -r "$tempdir"
 clear
