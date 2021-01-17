@@ -74,29 +74,6 @@ then
     mv "$tempdir"/TCUBetaBot TCU
 
 else
-    echo 'You already have a directory called "TCU" in this folder.'
-    echo ""
-    cd "$root" || return
-    choice=5
-    echo "1. Delete the original TCU folder and retry your download."
-    echo '2. Rename the original TCU folder (-> "TCU_Old") and retry your download. (recommended)'
-    echo "3. Don't touch the original TCU folder and retry your download."
-    echo "4. Exit."
-    echo ""
-    echo -n "Choose one of above options (to force quit -> CTRL + C)"
-    while [ $choice -eq 5 ]; do
-    read choice
-    if [ $choice -eq 1 ] ; then
-      echo ""
-      echo 'Deleting "TCU"'
-      rm -rf TCU
-      sleep 2s
-      echo ""
-      echo 'Retrying TCU latest/stable build.'
-      sleep 3s
-      bash $root/TCU_installer_latest.sh
-
-    elif [ $choice -eq 2 ]; then
         echo ""
         echo 'Renaming "TCU" to "TCU_Old"'
         rm -rf TCU_Old 1>/dev/null 2>&1
@@ -123,34 +100,12 @@ else
         echo ""
         echo "Database copied to the new version"
         echo "Copying other data to the new version"
-        cp -RT "$root/NadekoBot_old/src/NadekoBot/data/" "$root/NadekoBot/src/NadekoBot/data/" 1>/dev/null 2>&1
+        cp -RT "$root/TCU_Old/src/NadekoBot/data/" "$root/TCU/src/NadekoBot/data/" 1>/dev/null 2>&1
         echo ""
         echo "Other data copied to the new version"
         sleep 3s
 
-      elif [ $choice -eq 3 ]; then
-          echo ""
-          echo 'Retrying TCU latest/stable build.'
-          sleep 3s
-          bash $root/TCU_installer_latest.sh
-        elif [ $choice -eq 4 ]; then
-            echo ""
-            echo "Exciting.."
-            sleep 2s
-            cd "$root" || return
-            exit 0
-            else
-              clear
-              echo "1. Delete the original TCU folder and retry your download."
-              echo '2. Rename the original TCU folder (-> "TCU_Old") and retry your download. (recommended)'
-              echo "3. Don't touch the original TCU folder and retry your download."
-              echo "4. Exit."
-              echo ""
-              echo -n "Choose one of above options (to force quit -> CTRL + C)"
-              choice=5
-            fi
-  done
-fi
+done 
 
 rm -r "$tempdir"
 clear
