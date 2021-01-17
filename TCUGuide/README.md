@@ -2,7 +2,7 @@
 This informative guide will be your "main" way to navigate both the public & self-hosted bot. This guide is here to help you along the way. Contribute to this guide; adding, modifying or deleting text is a possibility, make a pull-request & Dok4440 will review and possibly accept it. Anything named wrongly in this branch and/or mislabeled is not the end of the world. Dok4440 is not a magician. If you do see an error, or have a question, join [TCU's support server](https://discord.gg/bYGcGCCRr2).
 
 ### What is explained in this branch
-- All errors you *might* discover on TCU, they're generally explained in Discord itself, but the [Error Folder]() [the reason that link isn't added in this commit yet is simply bc i made the Error folder in the same commit :)] is there to give elaborate info.
+- All errors you *might* discover on TCU, they're generally explained in Discord itself, but the Error.md file is there to give elaborate info.
 - A complete guide on self-hosting; from cloning this repo to launching the bot.
 - As TCU is originally made to host on Linux; a "small" guide on getting started on a VPS or VM
 - FAQ
