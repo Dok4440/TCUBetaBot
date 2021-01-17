@@ -10,6 +10,8 @@ Currenly *almost* all art created for TCU is made by [JuicyBblue](https://imgur.
 | ![7ds_ban](https://i.imgur.com/CZnGl8c.png)    ![TCUFlower](https://i.imgur.com/aZlqVi6.png)   | ![MainProfulePicture](https://i.imgur.com/hPSnttQ.png)    ![BetaProfilePicture](https://i.imgur.com/s1YYBIW.png)  |    
 ![glass_tea_cup](https://i.imgur.com/73m0CsW.png)    
 ![tcu_pfp_no_bg](https://i.imgur.com/5CIjCVe.png)  
+![_](https://i.imgur.com/wFsgSnr.png)  
+![](https://i.imgur.com/hSauh7K.png)
 
 
 
