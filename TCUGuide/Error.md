@@ -24,6 +24,13 @@ This error can appear as "No custom reaction found" & "No custom reaction found 
 
 *For people who are really weird (yes there's quite a few)*; if you really want to use any CR command on an unexisting custom reaction. You can make one. do `.h acr`
 
+## TCU_err_common1
+You tried a command & got a "common1" error; this means that the guide will *assume* this error was "clear" enough for you to figure out what's going on inside of Discord. Therefore there's explanation on _common1 errors. Do you wish to get more information on these errors / you're still confused as to why this error is appearing. Simply ask for help in [TCU's support server](https://discord.gg/bYGcGCCRr2).   
+
+ Current list of these errors;
+
+- "No stats for that trigger found, no action taken."
+
 ## FAQ
 ### Why aren't these numbers adding up / making sense?  
 The errors are not numbered in terms of addition; it does not start with zero and adds up similarly. The numbering is based on the number of the line in the [ResponseStrings](https://gitlab.com/Dok4440/TCUBetaBot/-/blob/develop/src/TCU/_strings/ResponseStrings.en-US.json). This makes it easier to modify when you host the bot yourself.
