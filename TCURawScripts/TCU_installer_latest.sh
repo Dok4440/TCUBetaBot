@@ -101,10 +101,10 @@ else
         echo 'Renaming "TCU" to "TCU_Old"'
         rm -rf TCU_Old 1>/dev/null 2>&1
         echo ""
-        echo 'Removed already existing "TCU_Old" folder (only applies when it you updated TCU before.)'
+        echo 'Removed already existing "TCU_Old" folder (only applies when you updated TCU before.)'
         sleep 2s
         mv -fT TCU TCU_Old 1>/dev/null 2>&1
-        mv "$tempdir"/NadekoBot TCU
+        mv "$tempdir"/TCUBetaBot TCU
         echo ""
         echo "Renamed. Copying credentials.json to new version"
         sleep 2s
