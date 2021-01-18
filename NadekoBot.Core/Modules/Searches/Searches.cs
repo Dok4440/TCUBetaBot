@@ -157,44 +157,44 @@ namespace NadekoBot.Modules.Searches
         [NadekoCommand, Usage, Description, Aliases]
         public async Task Useless()
         {
+          string[] uselessWebsiteURL = // will continue to update this list whenever i'm in the mood.
+          {
+              "http://eelslap.com/",
+              "https://cant-not-tweet-this.com/",
+              "http://burymewithmymoney.com/",
+              "https://heeeeeeeey.com/",
+              "https://alwaysjudgeabookbyitscover.com/",
+              "https://smashthewalls.com/",
+              "http://endless.horse/",
+              "https://trypap.com/",
+              "https://weirdorconfusing.com/",
+              "http://www.partridgegetslucky.com/",
+              "https://jacksonpollock.org/",
+              "http://corndog.io/",
+              "http://www.staggeringbeauty.com/",
+              "http://www.everydayim.com/",
+              "http://www.koalastothemax.com/",
+              "http://www.republiquedesmangues.fr/",
+              "http://randomcolour.com/",
+              "http://www.rrrgggbbb.com/",
+              "https://thatsthefinger.com/",
+              "http://ninjaflex.com/",
+              "https://thezen.zone/",
+              "http://hasthelargehadroncolliderdestroyedtheworldyet.com/",
+              "http://www.movenowthinklater.com/",
+              "http://corndogoncorndog.com/",
+              "https://imaninja.com/",
+              "https://cat-bounce.com/",
+              "http://ihasabucket.com/",
+              "https://chrismckenzie.com/",
+              "http://drawing.garden/",
+              "https://nullingthevoid.com/"
+          };
               try
               {
                   var msg = await ctx.Channel.SendMessageAsync("Fetching a useless website...").ConfigureAwait(false);
                   msg.DeleteAfter(3);
 
-                  string[] uselessWebsiteURL = // will continue to update this list whenever i'm in the mood.
-                  {
-                      "http://eelslap.com/",
-                      "https://cant-not-tweet-this.com/",
-                      "http://burymewithmymoney.com/",
-                      "https://heeeeeeeey.com/",
-                      "https://alwaysjudgeabookbyitscover.com/",
-                      "https://smashthewalls.com/",
-                      "http://endless.horse/",
-                      "https://trypap.com/",
-                      "https://weirdorconfusing.com/",
-                      "http://www.partridgegetslucky.com/",
-                      "https://jacksonpollock.org/",
-                      "http://corndog.io/",
-                      "http://www.staggeringbeauty.com/",
-                      "http://www.everydayim.com/",
-                      "http://www.koalastothemax.com/",
-                      "http://www.republiquedesmangues.fr/",
-                      "http://randomcolour.com/",
-                      "http://www.rrrgggbbb.com/",
-                      "https://thatsthefinger.com/",
-                      "http://ninjaflex.com/",
-                      "https://thezen.zone/",
-                      "http://hasthelargehadroncolliderdestroyedtheworldyet.com/",
-                      "http://www.movenowthinklater.com/",
-                      "http://corndogoncorndog.com/",
-                      "https://imaninja.com/",
-                      "https://cat-bounce.com/",
-                      "http://ihasabucket.com/",
-                      "https://chrismckenzie.com/",
-                      "http://drawing.garden/",
-                      "https://nullingthevoid.com/"
-                  };
                   Random rand = new Random();
                   int index = rand.Next(uselessWebsiteURL.Length);
                   int rand_num = rand.Next(1,3);
