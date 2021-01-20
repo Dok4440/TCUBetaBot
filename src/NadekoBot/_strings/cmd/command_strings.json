@@ -1912,7 +1912,7 @@
     ]
   },
   "cash": {
-    "Cmd": "$ currency $$ $$$ cash cur",
+    "Cmd": "$ currency $$ $$$ cash cur bal balance",
     "Desc": "Check how much currency a person has. (Defaults to yourself)",
     "Usage": [
       "{0}$",
@@ -3309,7 +3309,7 @@
     ]
   },
   "timely": {
-    "cmd": "timely",
+    "cmd": "timely daily",
     "desc": "Use to claim your 'timely' currency. Bot owner has to specify the amount and the period on how often you can claim your currency.",
     "usage": [
       "{0}timely"
