@@ -1,4 +1,4 @@
-﻿{
+{
   "h": {
     "Cmd": "help h",
     "Desc": "Shows you help for a single TCU-command OR DMs you basic information if no parameters are specified.",
@@ -923,14 +923,14 @@
     ]
   },
   "addquote": {
-    "Cmd": ".",
+    "Cmd": "aq",
     "Desc": "Adds a new quote with the specified name and message.",
     "Usage": [
       "{0}. sayhi Hi"
     ]
   },
   "showquote": {
-    "Cmd": "..",
+    "Cmd": "sq",
     "Desc": "Shows a random quote with a specified name.",
     "Usage": [
       "{0}.. abc"
@@ -1281,7 +1281,7 @@
     ]
   },
   "soundcloudqueue": {
-    "Cmd": "soundcloudqueue sq",
+    "Cmd": "soundcloudqueue",
     "Desc": "Queue a soundcloud song using keywords. Bot will join your voice channel. **You must be in a voice channel**.",
     "Usage": [
       "{0}sq Dream Of Venice"
@@ -1629,7 +1629,7 @@
     ]
   },
   "anime": {
-    "Cmd": "anime ani aq",
+    "Cmd": "anime ani",
     "Desc": "Queries anilist for an anime and shows the first result.",
     "Usage": [
       "{0}ani aquarion evol"
