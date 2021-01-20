@@ -28,7 +28,7 @@ namespace NadekoBot.Modules.Administration
 
                 return true;
             }
-            
+
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
             [UserPerm(GuildPerm.ManageRoles)]
@@ -56,15 +56,18 @@ namespace NadekoBot.Modules.Administration
             [UserPerm(GuildPerm.ManageRoles)]
             [UserPerm(GuildPerm.MuteMembers)]
             [Priority(0)]
-            public async Task Mute(IGuildUser target)
+            public async Task Mute(IGuildUser target, [Leftover] string msg=null)
             {
                 try
                 {
                     if (!await VerifyMutePermissions((IGuildUser)ctx.User, target))
                         return;
-                    
+
                     await _service.MuteUser(target, ctx.User).ConfigureAwait(false);
                     await ReplyConfirmLocalizedAsync("user_muted", Format.Bold(target.ToString())).ConfigureAwait(false);
+                    // as of now, mute reasons (string msg) do NOT get logged anywhere,
+                    // they're there for users convenience &/or not run into an error
+                    // but reason doesn't affect anything and gets lost the moment the command is ran
                 }
                 catch (Exception ex)
                 {
@@ -78,7 +81,7 @@ namespace NadekoBot.Modules.Administration
             [UserPerm(GuildPerm.ManageRoles)]
             [UserPerm(GuildPerm.MuteMembers)]
             [Priority(1)]
-            public async Task Mute(StoopidTime time, IGuildUser user)
+            public async Task Mute(StoopidTime time, IGuildUser user, [Leftover] string msg=null)
             {
                 if (time.Time < TimeSpan.FromMinutes(1) || time.Time > TimeSpan.FromDays(1))
                     return;
@@ -86,9 +89,10 @@ namespace NadekoBot.Modules.Administration
                 {
                     if (!await VerifyMutePermissions((IGuildUser)ctx.User, user))
                         return;
-                    
+
                     await _service.TimedMute(user, ctx.User, time.Time).ConfigureAwait(false);
                     await ReplyConfirmLocalizedAsync("user_muted_time", Format.Bold(user.ToString()), (int)time.Time.TotalMinutes).ConfigureAwait(false);
+                    // read line 68
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +127,7 @@ namespace NadekoBot.Modules.Administration
                 {
                     if (!await VerifyMutePermissions((IGuildUser)ctx.User, user))
                         return;
-                    
+
                     await _service.MuteUser(user, ctx.User, MuteType.Chat).ConfigureAwait(false);
                     await ReplyConfirmLocalizedAsync("user_chat_mute", Format.Bold(user.ToString())).ConfigureAwait(false);
                 }
@@ -159,7 +163,7 @@ namespace NadekoBot.Modules.Administration
                 {
                     if (!await VerifyMutePermissions((IGuildUser)ctx.User, user))
                         return;
-                    
+
                     await _service.MuteUser(user, ctx.User, MuteType.Voice).ConfigureAwait(false);
                     await ReplyConfirmLocalizedAsync("user_voice_mute", Format.Bold(user.ToString())).ConfigureAwait(false);
                 }
