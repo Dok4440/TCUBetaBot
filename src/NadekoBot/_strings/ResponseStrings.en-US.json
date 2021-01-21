@@ -744,7 +744,7 @@
   "administration_startcmds_cleared": "Cleared all startup commands.",
   "administration_unbanned_user": "User {0} has been unbanned.",
   "administration_user_not_found": "User not found.",
-  "administration_user_warned": "User {0} has been warned. **Relax**. This doesn't mean you're being yeeted to the moon. It simply means **R E L A X** on whatever you're doing. Don't quote me on the yeet part though.",
+  "administration_user_warned": "User {0} has been warned.",
   "administration_user_warned_and_punished": "User {0} has been warned and {1} punishment has been applied. You're gently being yeeted to the moon.",
   "administration_warned_on": "Warned on {0} server",
   "administration_warned_on_by": "On {0} at {1} by {2}",
