@@ -84,7 +84,21 @@ namespace NadekoBot.Modules.Gambling
         [NadekoCommand, Usage, Description, Aliases]
         public async Task Timely()
         {
-            var val = Bc.BotConfig.TimelyCurrency;
+          double multi = 0;
+          double multi1 = 0;
+          double multi2 = 0;
+          int attempt = 0;
+
+          while(multi > 1.5 || multi < 0.5)
+          {
+            Random random = new Random();
+            multi1 = random.NextDouble();
+            multi2 = random.Next(0,2);
+            multi = multi1 + multi2;
+            attempt += 1;
+          }
+
+            var val = Convert.ToInt64(Convert.ToDouble(Bc.BotConfig.TimelyCurrency) * multi);
             var period = Bc.BotConfig.TimelyCurrencyPeriod;
             if (val <= 0 || period <= 0)
             {
@@ -102,6 +116,15 @@ namespace NadekoBot.Modules.Gambling
             await _cs.AddAsync(ctx.User.Id, "Timely claim", val).ConfigureAwait(false);
 
             await ReplyConfirmLocalizedAsync("timely", n(val) + Bc.BotConfig.CurrencySign, period).ConfigureAwait(false);
+
+            // BETA ONLY
+            //multi = Math.Round(multi, 2);
+            //multi1 = Math.Round(multi1, 2);
+            //multi2 = Math.Round(multi2, 2);
+            //await ctx.Channel.EmbedAsync(
+            //    new EmbedBuilder().WithOkColor()
+            //        .WithAuthor(eab => eab.WithName("Bèta Testing Feature"))
+            //        .WithDescription($"Multi1: {multi1.ToString()}\nMulti2: {multi2.ToString()}\nMultiTotal: {multi.ToString()}\nMultiAttempts: {attempt.ToString()}"));
         }
 
         [NadekoCommand, Usage, Description, Aliases]
@@ -517,7 +540,7 @@ namespace NadekoBot.Modules.Gambling
                 {
                     cleanRichest = uow.DiscordUsers.GetTopRichest(_client.CurrentUser.Id, 10_000);
                 }
-                
+
                 await Context.Channel.TriggerTypingAsync().ConfigureAwait(false);
                 await _tracker.EnsureUsersDownloadedAsync(ctx.Guild).ConfigureAwait(false);
 
