@@ -31,6 +31,7 @@ You tried a command & got a "common1" error; this means that the guide will *ass
  Current list of these errors;
 
 - "No stats for that trigger found, no action taken."
+- "All emojis you've specified are invalid."
 
 ## FAQ
 ### Why aren't these numbers adding up / making sense?  
