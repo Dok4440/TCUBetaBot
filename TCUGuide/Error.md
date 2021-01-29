@@ -4,6 +4,7 @@ This directory in the Guide branch is the complete error list of TCU. All errors
 ## List of errors
 * [TCU_err_04](all proper links will be added at the final ERROR commit.)
 * [TCU_err_08](^)
+* [TCU_err_common1](^)
 * [FAQ](^)
 
 
