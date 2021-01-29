@@ -118,13 +118,17 @@ namespace NadekoBot.Modules.Gambling
             await ReplyConfirmLocalizedAsync("timely", n(val) + Bc.BotConfig.CurrencySign, period).ConfigureAwait(false);
 
             // BETA ONLY
-            //multi = Math.Round(multi, 2);
-            //multi1 = Math.Round(multi1, 2);
-            //multi2 = Math.Round(multi2, 2);
-            //await ctx.Channel.EmbedAsync(
-            //    new EmbedBuilder().WithOkColor()
-            //        .WithAuthor(eab => eab.WithName("Bèta Testing Feature"))
-            //        .WithDescription($"Multi1: {multi1.ToString()}\nMulti2: {multi2.ToString()}\nMultiTotal: {multi.ToString()}\nMultiAttempts: {attempt.ToString()}"));
+            var roleCheck = ctx.User;
+            if(ctx.Guild.Id != 781890375978844191) // server check (support)
+            return;
+
+            multi = Math.Round(multi, 2);
+            multi1 = Math.Round(multi1, 2);
+            multi2 = Math.Round(multi2, 2);
+            await ctx.Channel.EmbedAsync(
+                new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName("Bèta Testing Feature"))
+                    .WithDescription($"Multi1: {multi1.ToString()}\nMulti2: {multi2.ToString()}\nMultiTotal: {multi.ToString()}\nMultiAttempts: {attempt.ToString()}"));
         }
 
         [NadekoCommand, Usage, Description, Aliases]
