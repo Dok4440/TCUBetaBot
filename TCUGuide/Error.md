@@ -4,6 +4,7 @@ This directory in the Guide branch is the complete error list of TCU. All errors
 ## List of errors
 * [TCU_err_04](all proper links will be added at the final ERROR commit.)
 * [TCU_err_08](^)
+* [TCU_err_common1](^)
 * [FAQ](^)
 
 
@@ -30,6 +31,7 @@ You tried a command & got a "common1" error; this means that the guide will *ass
  Current list of these errors;
 
 - "No stats for that trigger found, no action taken."
+- "All emojis you've specified are invalid."
 
 ## FAQ
 ### Why aren't these numbers adding up / making sense?  
