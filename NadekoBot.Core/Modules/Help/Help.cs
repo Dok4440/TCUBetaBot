@@ -22,7 +22,7 @@ namespace NadekoBot.Modules.Help
     public class Help : NadekoTopLevelModule<HelpService>
     {
         public const string PatreonUrl = "NO_LINK_YET";
-        public const string PaypalUrl = "NO_LINK_YET";
+        public const string PaypalUrl = "NO_LINK_YET"; // gotta add this soon. Lol
         private readonly IBotCredentials _creds;
         private readonly CommandService _cmds;
         private readonly GlobalPermissionService _perms;
@@ -39,7 +39,7 @@ namespace NadekoBot.Modules.Help
             _perms = perms;
             _services = services;
             _client = client;
-            
+
             _lazyClientId = new AsyncLazy<ulong>(async () => (await _client.GetApplicationInfoAsync()).Id);
         }
 
@@ -53,7 +53,7 @@ namespace NadekoBot.Modules.Help
                 .Build();
 
             var app = await _client.GetApplicationInfoAsync();
-            
+
 
             if (!CREmbed.TryParse(Bc.BotConfig.HelpString, out var embed))
                 return ("", new EmbedBuilder().WithOkColor()
@@ -68,7 +68,7 @@ namespace NadekoBot.Modules.Help
         public async Task Modules()
         {
             var embed = new EmbedBuilder().WithOkColor()
-                .WithFooter(efb => efb.WithText("ℹ️" + GetText("modules_footer", Prefix)))
+                .WithFooter(efb => efb.WithText(GetText("modules_footer", Prefix)))
                 .WithTitle(GetText("list_of_modules"))
                 .WithDescription(string.Join("\n",
                                      _cmds.Modules.GroupBy(m => m.GetTopLevelModule())
