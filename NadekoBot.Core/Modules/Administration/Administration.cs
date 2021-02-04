@@ -15,7 +15,7 @@ namespace NadekoBot.Modules.Administration
 
         [NadekoCommand, Usage, Description, Aliases]
         [RequireContext(ContextType.Guild)]
-        [UserPerm(GuildPerm.Administrator)]
+        [UserPerm(GuildPerm.Administrator)] // changing this would be kinda stupid, let's not in the future ;)
         [BotPerm(GuildPerm.ManageMessages)]
         [Priority(2)]
         public async Task Delmsgoncmd(List _)
