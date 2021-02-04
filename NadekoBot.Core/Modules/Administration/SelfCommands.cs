@@ -298,11 +298,11 @@ namespace NadekoBot.Modules.Administration
 
             [NadekoCommand, Usage, Description, Aliases]
             [OwnerOnly]
-            public async Task Die()
+            public async Task Die([Leftover] string msg = null)
             {
                 try
                 {
-                    await ReplyConfirmLocalizedAsync("shutting_down").ConfigureAwait(false);
+                    await ReplyConfirmLocalizedAsync("shutting_down", msg.ToString()).ConfigureAwait(false);
                 }
                 catch
                 {

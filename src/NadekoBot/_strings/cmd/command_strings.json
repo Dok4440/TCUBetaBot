@@ -527,8 +527,8 @@
     ]
   },
   "die": {
-    "Cmd": "die",
-    "Desc": "Shuts the bot down.",
+    "Cmd": "die update fuckingwoosh",
+    "Desc": "Shuts the bot down. / Updates the bot.",
     "Usage": [
       "{0}die"
     ]
