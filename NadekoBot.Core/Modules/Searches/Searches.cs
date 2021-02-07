@@ -83,6 +83,10 @@ namespace NadekoBot.Modules.Searches
                 try
                 {
                     await channel.EmbedAsync(embedData.ToEmbed(), embedData.PlainText?.SanitizeMentions() ?? "").ConfigureAwait(false);
+                    if (channel != ctx.Channel)
+                    {
+                        await ReplyConfirmLocalizedAsync("say_sent");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -95,6 +99,10 @@ namespace NadekoBot.Modules.Searches
                 if (!string.IsNullOrWhiteSpace(msg))
                 {
                     await channel.SendConfirmAsync(msg).ConfigureAwait(false);
+                    if (channel != ctx.Channel)
+                    {
+                        await ReplyConfirmLocalizedAsync("say_sent");
+                    }
                 }
             }
         }
@@ -105,6 +113,43 @@ namespace NadekoBot.Modules.Searches
         [Priority(0)]
         public Task Say([Leftover] string message) =>
             Say((ITextChannel)ctx.Channel, message);
+
+        [NadekoCommand, Usage, Description, Aliases]
+        [RequireContext(ContextType.Guild)]
+        [UserPerm(GuildPerm.ManageMessages)]
+        public async Task Say2(ITextChannel channel, [Leftover] string message)
+        {
+            if (string.IsNullOrWhiteSpace(message))
+                return;
+
+            var rep = new ReplacementBuilder()
+                        .WithDefault(ctx.User, channel, (SocketGuild)ctx.Guild, (DiscordSocketClient)ctx.Client)
+                        .Build();
+
+            try
+            {
+                var msg = rep.Replace(message);
+                if (!string.IsNullOrWhiteSpace(msg))
+                {
+                    await channel.SendMessageAsync(message).ConfigureAwait(false);
+                    if (channel != ctx.Channel)
+                    {
+                        await ReplyConfirmLocalizedAsync("say_sent");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Warn(ex);
+            }
+        }
+
+        [NadekoCommand, Usage, Description, Aliases]
+        [RequireContext(ContextType.Guild)]
+        [UserPerm(GuildPerm.ManageMessages)]
+        [Priority(0)]
+        public Task Say2([Leftover] string message) =>
+        Say2((ITextChannel)ctx.Channel, message);
 
         // done in 3.0
         [NadekoCommand, Usage, Description, Aliases]
