@@ -142,6 +142,8 @@ namespace NadekoBot.Modules.Searches
             {
                 _log.Warn(ex);
             }
+
+            await ctx.Message.DeleteAsync();
         }
 
         [NadekoCommand, Usage, Description, Aliases]
