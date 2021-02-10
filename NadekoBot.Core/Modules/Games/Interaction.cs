@@ -58,8 +58,7 @@ namespace NadekoBot.Modules.Games
                 int option=0;
 
             if ((reply[replyString] == "Imagine slapping " + usr.Nickname + ".. They're too precious.")
-                || (reply[replyString] == "Don't slap " + usr.Nickname + "! thats meannnn")
-                || (reply[replyString] == "slapping " + usr.Nickname + " is inappropriate >:("))
+                || (reply[replyString] == "Don't slap " + usr.Nickname + "! thats mean >:(")) // 2 "error" (no hug) situations to mix things up
                  { option = 1; }
             else { option = 2; }
 
@@ -86,21 +85,58 @@ namespace NadekoBot.Modules.Games
         [NadekoCommand, Usage, Description, Aliases]
         public async Task hug(IGuildUser usr, [Leftover] string msg = null)
         {
-            string[] reply = // will continue to update this list whenever i'm in the mood.
-          {
-              "You aggressively hug " + usr.Mention + ".",
-              "You hug " + usr.Mention + " tightly, cute!",
-              "You awkwardly place your arms around " + usr.Mention + " without actually touching their body.",
-              usr.Mention + " pushed you away and RKO'd you!",
-              "You hug " + usr.Mention + " you can feel the warmth from their body.",
-              usr.Mention + " rejects a hug from you. that's what you get for being a SIMP.",
+            string[] reply =
+            {
+              "You aggressively hug " + usr.Nickname + ".",
+              "You hug " + usr.Nickname + " tightly, cute!",
+              "You awkwardly place your arms around " + usr.Nickname + " without actually touching their body.",
+              usr.Nickname + " pushed you away and RKO'd you!",
+              "You hug " + usr.Nickname + ", you can feel the warmth from their body.",
+              usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.",
               "You just got arrested for sexual assault, yikes.",
-          };
+              "WOAH! You hug " + usr.Nickname + " like you've never hugged someone before",
+            };
+            string[] image =
+            {
+                "https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif",
+                "https://media.giphy.com/media/Kf44fYvVuSbJu/giphy.gif",
+                "https://media.giphy.com/media/z20kiXXSroFErlcDTf/giphy.gif",
+                "http://pa1.narvii.com/7526/dc2c2a8f1e93e2829456a81c0fea0fb8b2ea6ea4r1-245-220_00.gif",
+                "https://www.icegif.com/wp-content/uploads/hug-kiss-icegif.gif",
+                "https://media.tenor.com/images/72a6612f9ee8586cd272de2342230791/tenor.gif",
+                "https://media.tenor.com/images/ff4a60a02557236c910f864611271df2/tenor.gif",
+                "https://media.tenor.com/images/2bb9e56d8982c9e806d33aed404a62c0/tenor.gif",
+                "https://media.tenor.com/images/f6f20cda181ac07db50be80cdc4fa0c8/tenor.gif",
+                "https://media.tenor.com/images/2d45b2e842cac286aa91cec91a7a17d7/tenor.gif"
+            };
 
             Random rand = new Random();
-            int index = rand.Next(reply.Length);
+            int replyString = rand.Next(reply.Length);
+            int imageURL = rand.Next(image.Length);
+            var av = ctx.User.RealAvatarUrl();
+            int option = 0;
 
-            await ctx.Channel.SendMessageAsync(reply[index]);
+            if ((reply[replyString] == usr.Nickname + " pushed you away and RKO'd you!")
+                || (reply[replyString] == usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.")) // 2 "error" (no hug) situations to mix things up
+            { option = 1; }
+            else { option = 2; }
+
+
+            if (option == 2)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])
+                                          .WithIconUrl(av.ToString()))
+                    .WithImageUrl(image[imageURL]));
+            }
+
+            if (option == 1)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])));
+            }
         }
 
         [NadekoCommand, Usage, Description, Aliases]
