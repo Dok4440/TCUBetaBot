@@ -30,16 +30,20 @@ namespace NadekoBot.Modules.Games
 
                 return;
             }
+
+            var nickOrUser = usr.Nickname;
+            if (usr.Nickname == null) { nickOrUser = usr.Username; }
+
             string[] reply =
             {
-              "Don't slap " + usr.Nickname + "! thats mean >:(",
-              "slaps " + usr.Nickname + "'s butt cheeks",
-              "You slapped " + usr.Nickname + "! Meanie!",
-              "You slapped "+ usr.Nickname + ". I thought you were friends :(",
-              "You slapped " + usr.Nickname + ", why don't you ever slap me daddy UwU",
-              "You slapped " + usr.Nickname + " nyaaa~~~~",
-              "slapping " + usr.Nickname + " is understandable, i don't blame you",
-              "slip slap slop, " + usr.Nickname + " fucking died.",
+              "Don't slap " + nickOrUser + "! thats mean >:(",
+              "slaps " + nickOrUser + "'s butt cheeks",
+              "You slapped " + nickOrUser + "! Meanie!",
+              "You slapped "+ nickOrUser + ". I thought you were friends :(",
+              "You slapped " + nickOrUser + ", why don't you ever slap me daddy UwU",
+              "You slapped " + nickOrUser + " nyaaa~~~~",
+              "slapping " + nickOrUser + " is understandable, i don't blame you",
+              "slip slap slop, " + nickOrUser + " fucking died.",
             };
             string[] image =
             {
@@ -63,7 +67,7 @@ namespace NadekoBot.Modules.Games
                 var av = ctx.User.RealAvatarUrl();
                 int option=0;
 
-            if (reply[replyString] == "Don't slap " + usr.Nickname + "! thats mean >:(") // 1 "error" (no slap) situation to mix things up
+            if (reply[replyString] == "Don't slap " + nickOrUser + "! thats mean >:(") // 1 "error" (no slap) situation to mix things up
                  { option = 1; }
             else { option = 2; }
 
@@ -99,14 +103,17 @@ namespace NadekoBot.Modules.Games
                 return;
             }
 
+            var nickOrUser = usr.Nickname;
+            if (usr.Nickname == null) { nickOrUser = usr.Username; }
+
             string[] reply =
             {
-              "You aggressively hug " + usr.Nickname + ".",
-              "You hug " + usr.Nickname + " tightly, cute!",
-              "You awkwardly place your arms around " + usr.Nickname + " without actually touching their body.",
-              "You hug " + usr.Nickname + ", you can feel the warmth from their body.",
-              usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.",
-              "WOAH! You hug " + usr.Nickname + " like you've never hugged someone before",
+              "You aggressively hug " + nickOrUser + ".",
+              "You hug " + nickOrUser + " tightly, cute!",
+              "You awkwardly place your arms around " + nickOrUser + " without actually touching their body.",
+              "You hug " + nickOrUser + ", you can feel the warmth from their body.",
+              nickOrUser + " rejects a hug from you. that's what you get for being a SIMP.",
+              "WOAH! You hug " + nickOrUser + " like you've never hugged someone before",
             };
             string[] image =
             {
@@ -128,7 +135,7 @@ namespace NadekoBot.Modules.Games
             var av = ctx.User.RealAvatarUrl();
             int option = 0;
 
-            if ((reply[replyString] == usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.")) // 1 "error" (no hug) situations to mix things up
+            if ((reply[replyString] == nickOrUser + " rejects a hug from you. that's what you get for being a SIMP.")) // 1 "error" (no hug) situations to mix things up
             { option = 1; }
             else { option = 2; }
 
@@ -162,20 +169,24 @@ namespace NadekoBot.Modules.Games
                 return;
             }
 
+            var nickOrUser = usr.Nickname;
+            if (usr.Nickname == null) { nickOrUser = usr.Username; }
+            
+
             string[] reply =
             {
               //"You fuck {user}'s tight asshole/pussy",
               // "you slowly insert your cock into {user}, Nyaaaaa",
               // "you slowly start pegging {user}, kinky uwu",
               // "you have been arrested for attempted rape",
-              "Sexxing " + usr.Username + " sexxing " + usr.Username + " sexxing " + usr.Username + "!",
-              "You paid " + usr.Username + " to sex you.",
-              "You aggressively sex " + usr.Username + ".",
-              "YEAHHHHHH SEX WITH " + usr.Username + ".",
-              "Sex with " + usr.Username + " is always awkward.",
-              usr.Username + " a-ahh~ not so h-hard~~.",
+              "Sexxing " + nickOrUser + " sexxing " + usr.Username + " sexxing " + usr.Username + "!",
+              "You paid " + nickOrUser + " to sex you.",
+              "You aggressively sex " + nickOrUser + ".",
+              "YEAHHHHHH SEX WITH " + nickOrUser + ".",
+              "Sex with " + nickOrUser + " is always awkward.",
+              nickOrUser + " a-ahh~ not so h-hard~~.",
               "Nee papa nee, te diep kut aaaaaaaaaaaaaaaaaaaaaaaaaa.",
-              "You perform sex TERRIBLY on " + usr.Username + ".",
+              "You perform sex TERRIBLY on " + nickOrUser + ".",
               "Why would you ever wanna fuck that?!",
             };
 
@@ -217,17 +228,20 @@ namespace NadekoBot.Modules.Games
                 return;
             }
 
+            var nickOrUser = usr.Nickname;
+            if (usr.Nickname == null) { nickOrUser = usr.Username; }
+
             string[] reply =
             {
-              "you slowly insert your tongue into " + usr.Username + "'s mouth, Nyaaaaa",
-              "Kissing " + usr.Username + " kissing " + usr.Username + " kissing " + usr.Username + "!",
-              "You paid " + usr.Username + " to kiss you. DERP",
-              "You aggressively tongue " + usr.Username + "..",
-              "YEAHHHHHH " + usr.Nickname + " GETS THE BIG KISSES.",
-              "Kissing with " + usr.Username + " is always awkward... but they like it.",
-              usr.Username + " was kissed for the first time in their life. WOOOOOOOO",
-              usr.Username + " rejected your kiss, you fucking die.",
-              "You kiss " + usr.Username + " TERRIBLY.",
+              "you slowly insert your tongue into " + nickOrUser + "'s mouth, Nyaaaaa",
+              "Kissing " + nickOrUser + " kissing " + nickOrUser + " kissing " + nickOrUser + "!",
+              "You paid " + nickOrUser + " to kiss you. DERP",
+              "You aggressively tongue " + nickOrUser + "..",
+              "YEAHHHHHH " + nickOrUser + " GETS THE BIG KISSES.",
+              "Kissing with " + nickOrUser + " is always awkward... but they like it.",
+              nickOrUser + " was kissed for the first time in their life. WOOOOOOOO",
+              nickOrUser + " rejected your kiss, you fucking die.",
+              "You kiss " + nickOrUser + " TERRIBLY.",
             };
 
             string[] image =
@@ -257,7 +271,7 @@ namespace NadekoBot.Modules.Games
             var av = ctx.User.RealAvatarUrl();
             int option = 0;
 
-            if (reply[replyString] == usr.Username + " rejected your kiss, you fucking die.") // 1 "error" (no kiss) situation to mix things up
+            if (reply[replyString] == nickOrUser + " rejected your kiss, you fucking die.") // 1 "error" (no kiss) situation to mix things up
                  { option = 1; }
             else { option = 2; }
 
