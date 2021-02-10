@@ -22,16 +22,23 @@ namespace NadekoBot.Modules.Games
         [NadekoCommand, Usage, Description, Aliases]
         public async Task slap(IGuildUser usr, [Leftover] string msg = null)
         {
+            if (ctx.User.Id == usr.Id)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName("Trying to slap yourself? That's adorable...")));
+
+                return;
+            }
             string[] reply =
             {
               "Imagine slapping " + usr.Nickname + ".. They're too precious.",
-              "Don't slap " + usr.Nickname + "! thats meannnn",
+              "Don't slap " + usr.Nickname + "! thats mean >:(",
               "slaps " + usr.Nickname + "'s butt cheeks",
               "You slapped " + usr.Nickname + "! Meanie!",
               "You slapped "+ usr.Nickname + ". I thought you were friends :(",
               "You slapped " + usr.Nickname + ", why don't you ever slap me daddy UwU",
               "You slapped " + usr.Nickname + " nyaaa~~~~",
-              "slapping " + usr.Nickname + " is inappropriate >:(",
               "slapping " + usr.Nickname + " is understandable, i don't blame you",
               "slip slap slop, " + usr.Nickname + " fucking died.",
             };
@@ -85,6 +92,15 @@ namespace NadekoBot.Modules.Games
         [NadekoCommand, Usage, Description, Aliases]
         public async Task hug(IGuildUser usr, [Leftover] string msg = null)
         {
+            if (ctx.User.Id == usr.Id)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName("Trying to hug yourself? Pathetic.")));
+
+                return;
+            }
+
             string[] reply =
             {
               "You aggressively hug " + usr.Nickname + ".",
@@ -93,7 +109,6 @@ namespace NadekoBot.Modules.Games
               usr.Nickname + " pushed you away and RKO'd you!",
               "You hug " + usr.Nickname + ", you can feel the warmth from their body.",
               usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.",
-              "You just got arrested for sexual assault, yikes.",
               "WOAH! You hug " + usr.Nickname + " like you've never hugged someone before",
             };
             string[] image =
@@ -142,27 +157,56 @@ namespace NadekoBot.Modules.Games
         [NadekoCommand, Usage, Description, Aliases]
         public async Task fuck(IGuildUser usr, [Leftover] string msg = null)
         {
-            string[] reply = // will continue to update this list whenever i'm in the mood.
-          {
+            if (ctx.User.Id == usr.Id)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName("Trying to fuck yourself? That's pretty gay, ngl.")));
+
+                return;
+            }
+
+            string[] reply =
+            {
               //"You fuck {user}'s tight asshole/pussy",
               // "you slowly insert your cock into {user}, Nyaaaaa",
               // "you slowly start pegging {user}, kinky uwu",
               // "you have been arrested for attempted rape",
-              "Sexxing " + usr.Mention + " sexxing " + usr.Mention + " sexxing " + usr.Mention + "!",
-              "You paid " + usr.Mention + " to sex you.",
-              "You aggressively sex " + usr.Mention + ".",
-              "YEAHHHHHH SEX WITH " + usr.Mention + ".",
-              "Sex with " + usr.Mention + " is always awkward.",
-              usr.Mention + " a-ahh~ not so h-hard~~.",
+              "Sexxing " + usr.Username + " sexxing " + usr.Username + " sexxing " + usr.Username + "!",
+              "You paid " + usr.Username + " to sex you.",
+              "You aggressively sex " + usr.Username + ".",
+              "YEAHHHHHH SEX WITH " + usr.Username + ".",
+              "Sex with " + usr.Username + " is always awkward.",
+              usr.Username + " a-ahh~ not so h-hard~~.",
               "Nee papa nee, te diep kut aaaaaaaaaaaaaaaaaaaaaaaaaa.",
-              "You perform sex TERRIBLY on " + usr.Mention + ".",
+              "You perform sex TERRIBLY on " + usr.Username + ".",
               "Why would you ever wanna fuck that?!",
-          };
+            };
 
             Random rand = new Random();
-            int index = rand.Next(reply.Length);
+            int replyString = rand.Next(reply.Length);
+            var av = ctx.User.RealAvatarUrl();
+            int option = 0;
 
-            await ctx.Channel.SendMessageAsync(reply[index]);
+            if (reply[replyString] == "Why would you ever wanna fuck that?!") // 1 "error" (no hug) situation to mix things up
+                 { option = 1; }
+            else { option = 2; }
+
+
+            if (option == 2)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])
+                                          .WithIconUrl(av.ToString())));
+            }
+
+            if (option == 1)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])));
+            }
         }
     }
-}   
+}
