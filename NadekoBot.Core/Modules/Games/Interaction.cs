@@ -32,7 +32,6 @@ namespace NadekoBot.Modules.Games
             }
             string[] reply =
             {
-              "Imagine slapping " + usr.Nickname + ".. They're too precious.",
               "Don't slap " + usr.Nickname + "! thats mean >:(",
               "slaps " + usr.Nickname + "'s butt cheeks",
               "You slapped " + usr.Nickname + "! Meanie!",
@@ -64,8 +63,7 @@ namespace NadekoBot.Modules.Games
                 var av = ctx.User.RealAvatarUrl();
                 int option=0;
 
-            if ((reply[replyString] == "Imagine slapping " + usr.Nickname + ".. They're too precious.")
-                || (reply[replyString] == "Don't slap " + usr.Nickname + "! thats mean >:(")) // 2 "error" (no hug) situations to mix things up
+            if (reply[replyString] == "Don't slap " + usr.Nickname + "! thats mean >:(") // 1 "error" (no slap) situation to mix things up
                  { option = 1; }
             else { option = 2; }
 
@@ -106,7 +104,6 @@ namespace NadekoBot.Modules.Games
               "You aggressively hug " + usr.Nickname + ".",
               "You hug " + usr.Nickname + " tightly, cute!",
               "You awkwardly place your arms around " + usr.Nickname + " without actually touching their body.",
-              usr.Nickname + " pushed you away and RKO'd you!",
               "You hug " + usr.Nickname + ", you can feel the warmth from their body.",
               usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.",
               "WOAH! You hug " + usr.Nickname + " like you've never hugged someone before",
@@ -131,8 +128,7 @@ namespace NadekoBot.Modules.Games
             var av = ctx.User.RealAvatarUrl();
             int option = 0;
 
-            if ((reply[replyString] == usr.Nickname + " pushed you away and RKO'd you!")
-                || (reply[replyString] == usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.")) // 2 "error" (no hug) situations to mix things up
+            if ((reply[replyString] == usr.Nickname + " rejects a hug from you. that's what you get for being a SIMP.")) // 1 "error" (no hug) situations to mix things up
             { option = 1; }
             else { option = 2; }
 
@@ -188,7 +184,7 @@ namespace NadekoBot.Modules.Games
             var av = ctx.User.RealAvatarUrl();
             int option = 0;
 
-            if (reply[replyString] == "Why would you ever wanna fuck that?!") // 1 "error" (no hug) situation to mix things up
+            if (reply[replyString] == "Why would you ever wanna fuck that?!") // 1 "error" (no fuck) situation to mix things up
                  { option = 1; }
             else { option = 2; }
 
@@ -199,6 +195,79 @@ namespace NadekoBot.Modules.Games
                     new EmbedBuilder().WithOkColor()
                     .WithAuthor(eab => eab.WithName(reply[replyString])
                                           .WithIconUrl(av.ToString())));
+            }
+
+            if (option == 1)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])));
+            }
+        }
+
+        [NadekoCommand, Usage, Description, Aliases]
+        public async Task kiss(IGuildUser usr, [Leftover] string msg = null)
+        {
+            if (ctx.User.Id == usr.Id)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName("Trying to kiss yourself? LOL.")));
+
+                return;
+            }
+
+            string[] reply =
+            {
+              "you slowly insert your tongue into " + usr.Username + "'s mouth, Nyaaaaa",
+              "Kissing " + usr.Username + " kissing " + usr.Username + " kissing " + usr.Username + "!",
+              "You paid " + usr.Username + " to kiss you. DERP",
+              "You aggressively tongue " + usr.Username + "..",
+              "YEAHHHHHH " + usr.Nickname + " GETS THE BIG KISSES.",
+              "Kissing with " + usr.Username + " is always awkward... but they like it.",
+              usr.Username + " was kissed for the first time in their life. WOOOOOOOO",
+              usr.Username + " rejected your kiss, you fucking die.",
+              "You kiss " + usr.Username + " TERRIBLY.",
+            };
+
+            string[] image =
+            {
+                "https://media.tenor.com/images/45a799f31a273318e1c3f78490f5e34d/tenor.gif",
+                "https://media.tenor.com/images/536feb2229b55c1657add7630ef4ffdb/tenor.gif",
+                "https://i.pinimg.com/originals/37/f9/f2/37f9f27715e7dec6f2f4b7d63ad1af13.gif",
+                "https://i.pinimg.com/originals/3b/c2/ad/3bc2ad46f9870a093a222ff5171639d2.gif",
+                "https://media.tenor.com/images/00f8945a8749e2de6876525ea32dd34d/tenor.gif",
+                "https://thumbs.gfycat.com/IdolizedNecessaryCow-size_restricted.gif",
+                "https://i.pinimg.com/originals/2c/ef/2b/2cef2bb1185493a6d2f723b3d04bd299.gif",
+                "https://media.tenor.com/images/e7de08e18e5778d41e7b6884a2ffb7bd/tenor.gif",
+                "https://media.tenor.com/images/134bad0dd7b1e2f20f8b4c36ebf8b5b2/tenor.gif",
+                "https://i.pinimg.com/originals/0a/a0/ba/0aa0ba9d6c80adefd3077823fde42ff5.gif",
+                "https://media.tenor.com/images/84900d5c4088c08cac576f241bfe5d1a/tenor.gif",
+                "https://media.tenor.com/images/83bceada9e9a957a3909934de9c4a0f6/tenor.gif",
+                "https://media.tenor.com/images/7def7aef1e4ce366c1da194d12d8bc83/tenor.gif",
+                "https://i.pinimg.com/originals/35/2d/cc/352dccdf2450e0fe1ee4fce239e372a9.gif",
+                "https://media.tenor.com/images/97196e32b62715fca06a151a8e2bd1cd/tenor.gif",
+                "https://media.tenor.com/images/f773c40896a968633b613f5cafa08de2/tenor.gif",
+                "https://cdn.statically.io/img/i.pinimg.com/originals/bb/32/ce/bb32cea39d78161b9afd34604b88e18a.gif"
+            };
+
+            Random rand = new Random();
+            int replyString = rand.Next(reply.Length);
+            int imageURL = rand.Next(image.Length);
+            var av = ctx.User.RealAvatarUrl();
+            int option = 0;
+
+            if (reply[replyString] == usr.Username + " rejected your kiss, you fucking die.") // 1 "error" (no kiss) situation to mix things up
+                 { option = 1; }
+            else { option = 2; }
+
+            if (option == 2)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])
+                                          .WithIconUrl(av.ToString()))
+                    .WithImageUrl(image[imageURL]));
             }
 
             if (option == 1)
