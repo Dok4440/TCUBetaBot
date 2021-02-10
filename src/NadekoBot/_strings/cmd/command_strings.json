@@ -693,7 +693,7 @@
       "{0}uptime"
     ]
   },
-  "version":{
+  "version": {
     "Cmd": "version v",
     "Desc": "Shows TCU's current version",
     "Usage": [
@@ -1118,6 +1118,27 @@
     "Usage": [
       "{0}t",
       "{0}t --timeout 5 -p -w 3 -q 10"
+    ]
+  },
+  "fuck": {
+    "Cmd": "fuck",
+    "Desc": "Do the deed & need for speed. Blow your skeet then hit that yeet",
+    "Usage": [
+      "{0}fuck @Dok"
+    ]
+  },
+  "hug": {
+    "Cmd": "hug snuggle",
+    "Desc": "hug = snuggle, yeah that's right. THATS RIGHT, SCREW THAT CARROT!",
+    "Usage": [
+      "{0}hug @Flo"
+    ]
+  },
+  "slap": {
+    "Cmd": "slap",
+    "Desc": "Ever wanna beat the crap out of that one annoying kid in your discord server? I gotchu.",
+    "Usage": [
+      "{0}slap @Sem"
     ]
   },
   "tl": {
