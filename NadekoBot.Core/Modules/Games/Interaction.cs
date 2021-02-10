@@ -20,25 +20,66 @@ namespace NadekoBot.Modules.Games
     public partial class Interaction : NadekoTopLevelModule<GamesService>
     {
         [NadekoCommand, Usage, Description, Aliases]
-        public async Task slap(IGuildUser usr, [Leftover] string msg=null)
+        public async Task slap(IGuildUser usr, [Leftover] string msg = null)
         {
-            string[] reply = // will continue to update this list whenever i'm in the mood.
-          {
-              "Imagine slapping " + usr.Mention + ".. They're too precious.",
-              "Don't slap " + usr.Mention + "! thats meannnn",
-              "slaps " + usr.Mention + "'s butt cheeks",
-              "You slapped " + usr.Mention + "! Meanie!",
-              "You slapped "+ usr.Mention + ". I thought you were friends :(",
-              "You slapped " + usr.Mention + ", why don't you ever slap me daddy UwU",
-              "You slapped " + usr.Mention + " nyaaa~~~~",
-              "slapping " + usr.Mention + " is inappropriate >:(",
-              "slapping " + usr.Mention + " is understandable, i don't blame you"
-          };
+            string[] reply =
+            {
+              "Imagine slapping " + usr.Nickname + ".. They're too precious.",
+              "Don't slap " + usr.Nickname + "! thats meannnn",
+              "slaps " + usr.Nickname + "'s butt cheeks",
+              "You slapped " + usr.Nickname + "! Meanie!",
+              "You slapped "+ usr.Nickname + ". I thought you were friends :(",
+              "You slapped " + usr.Nickname + ", why don't you ever slap me daddy UwU",
+              "You slapped " + usr.Nickname + " nyaaa~~~~",
+              "slapping " + usr.Nickname + " is inappropriate >:(",
+              "slapping " + usr.Nickname + " is understandable, i don't blame you",
+              "slip slap slop, " + usr.Nickname + " fucking died.",
+            };
+            string[] image =
+            {
+                "https://i.gifer.com/XaaW.gif",
+                "https://i.gifer.com/V6EH.gif",
+                "https://i.gifer.com/VVm2.gif",
+                "https://i.gifer.com/90du.gif",
+                "https://i.gifer.com/n1.gif",
+                "https://i.gifer.com/X35p.gif",
+                "https://i.gifer.com/RK9x.gif",
+                "https://i.gifer.com/2VjD.gif",
+                "https://i.gifer.com/tmp.gif",
+                "https://i.gifer.com/nM.gif",
+                "https://i.gifer.com/7HBx.gif",
+                "https://i.gifer.com/7Kr.gif"
+            };
 
                 Random rand = new Random();
-                int index = rand.Next(reply.Length);
+                int replyString = rand.Next(reply.Length);
+                int imageURL = rand.Next(image.Length);
+                var av = ctx.User.RealAvatarUrl();
+                int option=0;
 
-                await ctx.Channel.SendMessageAsync(reply[index]);
+            if ((reply[replyString] == "Imagine slapping " + usr.Nickname + ".. They're too precious.")
+                || (reply[replyString] == "Don't slap " + usr.Nickname + "! thats meannnn")
+                || (reply[replyString] == "slapping " + usr.Nickname + " is inappropriate >:("))
+                 { option = 1; }
+            else { option = 2; }
+
+
+            if (option == 2)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])
+                                          .WithIconUrl(av.ToString()))
+                    .WithImageUrl(image[imageURL]));
+            }
+
+            if (option == 1)
+            {
+                await ctx.Channel.EmbedAsync(
+                    new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName(reply[replyString])));
+            }
+
         }
 
 
