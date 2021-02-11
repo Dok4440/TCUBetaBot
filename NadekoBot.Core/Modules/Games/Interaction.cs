@@ -17,25 +17,28 @@ namespace NadekoBot.Modules.Games
     - Shiritori
     - Simple RPG adventure
     */
-    public partial class Interaction : NadekoTopLevelModule<GamesService>
+    public partial class Games
     {
-        [NadekoCommand, Usage, Description, Aliases]
-        public async Task slap(IGuildUser usr, [Leftover] string msg = null)
+        [Group]
+        public partial class Interaction : NadekoTopLevelModule<GamesService>
         {
-            if (ctx.User.Id == usr.Id)
+            [NadekoCommand, Usage, Description, Aliases]
+            public async Task slap(IGuildUser usr, [Leftover] string msg = null)
             {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName("Trying to slap yourself? That's adorable...")));
+                if (ctx.User.Id == usr.Id)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName("Trying to slap yourself? That's adorable...")));
 
-                return;
-            }
+                    return;
+                }
 
-            var nickOrUser = usr.Nickname;
-            if (usr.Nickname == null) { nickOrUser = usr.Username; }
+                var nickOrUser = usr.Nickname;
+                if (usr.Nickname == null) { nickOrUser = usr.Username; }
 
-            string[] reply =
-            {
+                string[] reply =
+                {
               "Don't slap " + nickOrUser + "! thats mean >:(",
               "slaps " + nickOrUser + "'s butt cheeks",
               "You slapped " + nickOrUser + "! Meanie!",
@@ -45,8 +48,8 @@ namespace NadekoBot.Modules.Games
               "slapping " + nickOrUser + " is understandable, i don't blame you",
               "slip slap slop, " + nickOrUser + " fucking died.",
             };
-            string[] image =
-            {
+                string[] image =
+                {
                 "https://i.gifer.com/XaaW.gif",
                 "https://i.gifer.com/V6EH.gif",
                 "https://i.gifer.com/VVm2.gif",
@@ -65,49 +68,49 @@ namespace NadekoBot.Modules.Games
                 int replyString = rand.Next(reply.Length);
                 int imageURL = rand.Next(image.Length);
                 var av = ctx.User.RealAvatarUrl();
-                int option=0;
+                int option = 0;
 
-            if (reply[replyString] == "Don't slap " + nickOrUser + "! thats mean >:(") // 1 "error" (no slap) situation to mix things up
-                 { option = 1; }
-            else { option = 2; }
+                if (reply[replyString] == "Don't slap " + nickOrUser + "! thats mean >:(") // 1 "error" (no slap) situation to mix things up
+                { option = 1; }
+                else { option = 2; }
 
 
-            if (option == 2)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithOkColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])
-                                          .WithIconUrl(av.ToString()))
-                    .WithImageUrl(image[imageURL]));
+                if (option == 2)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])
+                                              .WithIconUrl(av.ToString()))
+                        .WithImageUrl(image[imageURL]));
+                }
+
+                if (option == 1)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])));
+                }
+
             }
 
-            if (option == 1)
+
+            [NadekoCommand, Usage, Description, Aliases]
+            public async Task hug(IGuildUser usr, [Leftover] string msg = null)
             {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])));
-            }
+                if (ctx.User.Id == usr.Id)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName("Trying to hug yourself? Pathetic.")));
 
-        }
+                    return;
+                }
 
+                var nickOrUser = usr.Nickname;
+                if (usr.Nickname == null) { nickOrUser = usr.Username; }
 
-        [NadekoCommand, Usage, Description, Aliases]
-        public async Task hug(IGuildUser usr, [Leftover] string msg = null)
-        {
-            if (ctx.User.Id == usr.Id)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName("Trying to hug yourself? Pathetic.")));
-
-                return;
-            }
-
-            var nickOrUser = usr.Nickname;
-            if (usr.Nickname == null) { nickOrUser = usr.Username; }
-
-            string[] reply =
-            {
+                string[] reply =
+                {
               "You aggressively hug " + nickOrUser + ".",
               "You hug " + nickOrUser + " tightly, cute!",
               "You awkwardly place your arms around " + nickOrUser + " without actually touching their body.",
@@ -115,8 +118,8 @@ namespace NadekoBot.Modules.Games
               nickOrUser + " rejects a hug from you. that's what you get for being a SIMP.",
               "WOAH! You hug " + nickOrUser + " like you've never hugged someone before",
             };
-            string[] image =
-            {
+                string[] image =
+                {
                 "https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif",
                 "https://media.giphy.com/media/Kf44fYvVuSbJu/giphy.gif",
                 "https://media.giphy.com/media/z20kiXXSroFErlcDTf/giphy.gif",
@@ -129,56 +132,52 @@ namespace NadekoBot.Modules.Games
                 "https://media.tenor.com/images/2d45b2e842cac286aa91cec91a7a17d7/tenor.gif"
             };
 
-            Random rand = new Random();
-            int replyString = rand.Next(reply.Length);
-            int imageURL = rand.Next(image.Length);
-            var av = ctx.User.RealAvatarUrl();
-            int option = 0;
+                Random rand = new Random();
+                int replyString = rand.Next(reply.Length);
+                int imageURL = rand.Next(image.Length);
+                var av = ctx.User.RealAvatarUrl();
+                int option = 0;
 
-            if ((reply[replyString] == nickOrUser + " rejects a hug from you. that's what you get for being a SIMP.")) // 1 "error" (no hug) situations to mix things up
-            { option = 1; }
-            else { option = 2; }
+                if ((reply[replyString] == nickOrUser + " rejects a hug from you. that's what you get for being a SIMP.")) // 1 "error" (no hug) situations to mix things up
+                { option = 1; }
+                else { option = 2; }
 
 
-            if (option == 2)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithOkColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])
-                                          .WithIconUrl(av.ToString()))
-                    .WithImageUrl(image[imageURL]));
+                if (option == 2)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])
+                                              .WithIconUrl(av.ToString()))
+                        .WithImageUrl(image[imageURL]));
+                }
+
+                if (option == 1)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])));
+                }
             }
 
-            if (option == 1)
+            [NadekoCommand, Usage, Description, Aliases]
+            public async Task fuck(IGuildUser usr, [Leftover] string msg = null)
             {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])));
-            }
-        }
+                if (ctx.User.Id == usr.Id)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName("Trying to fuck yourself? That's pretty gay, ngl.")));
 
-        [NadekoCommand, Usage, Description, Aliases]
-        public async Task fuck(IGuildUser usr, [Leftover] string msg = null)
-        {
-            if (ctx.User.Id == usr.Id)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName("Trying to fuck yourself? That's pretty gay, ngl.")));
+                    return;
+                }
 
-                return;
-            }
+                var nickOrUser = usr.Nickname;
+                if (usr.Nickname == null) { nickOrUser = usr.Username; }
 
-            var nickOrUser = usr.Nickname;
-            if (usr.Nickname == null) { nickOrUser = usr.Username; }
-            
 
-            string[] reply =
-            {
-              //"You fuck {user}'s tight asshole/pussy",
-              // "you slowly insert your cock into {user}, Nyaaaaa",
-              // "you slowly start pegging {user}, kinky uwu",
-              // "you have been arrested for attempted rape",
+                string[] reply =
+                {
               "Sexxing " + nickOrUser + " sexxing " + usr.Username + " sexxing " + usr.Username + "!",
               "You paid " + nickOrUser + " to sex you.",
               "You aggressively sex " + nickOrUser + ".",
@@ -190,49 +189,49 @@ namespace NadekoBot.Modules.Games
               "Why would you ever wanna fuck that?!",
             };
 
-            Random rand = new Random();
-            int replyString = rand.Next(reply.Length);
-            var av = ctx.User.RealAvatarUrl();
-            int option = 0;
+                Random rand = new Random();
+                int replyString = rand.Next(reply.Length);
+                var av = ctx.User.RealAvatarUrl();
+                int option = 0;
 
-            if (reply[replyString] == "Why would you ever wanna fuck that?!") // 1 "error" (no fuck) situation to mix things up
-                 { option = 1; }
-            else { option = 2; }
+                if (reply[replyString] == "Why would you ever wanna fuck that?!") // 1 "error" (no fuck) situation to mix things up
+                { option = 1; }
+                else { option = 2; }
 
 
-            if (option == 2)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithOkColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])
-                                          .WithIconUrl(av.ToString())));
+                if (option == 2)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])
+                                              .WithIconUrl(av.ToString())));
+                }
+
+                if (option == 1)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])));
+                }
             }
 
-            if (option == 1)
+            [NadekoCommand, Usage, Description, Aliases]
+            public async Task kiss(IGuildUser usr, [Leftover] string msg = null)
             {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])));
-            }
-        }
+                if (ctx.User.Id == usr.Id)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName("Trying to kiss yourself? LOL.")));
 
-        [NadekoCommand, Usage, Description, Aliases]
-        public async Task kiss(IGuildUser usr, [Leftover] string msg = null)
-        {
-            if (ctx.User.Id == usr.Id)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName("Trying to kiss yourself? LOL.")));
+                    return;
+                }
 
-                return;
-            }
+                var nickOrUser = usr.Nickname;
+                if (usr.Nickname == null) { nickOrUser = usr.Username; }
 
-            var nickOrUser = usr.Nickname;
-            if (usr.Nickname == null) { nickOrUser = usr.Username; }
-
-            string[] reply =
-            {
+                string[] reply =
+                {
               "you slowly insert your tongue into " + nickOrUser + "'s mouth, Nyaaaaa",
               "Kissing " + nickOrUser + " kissing " + nickOrUser + " kissing " + nickOrUser + "!",
               "You paid " + nickOrUser + " to kiss you. DERP",
@@ -244,8 +243,8 @@ namespace NadekoBot.Modules.Games
               "You kiss " + nickOrUser + " TERRIBLY.",
             };
 
-            string[] image =
-            {
+                string[] image =
+                {
                 "https://media.tenor.com/images/45a799f31a273318e1c3f78490f5e34d/tenor.gif",
                 "https://media.tenor.com/images/536feb2229b55c1657add7630ef4ffdb/tenor.gif",
                 "https://i.pinimg.com/originals/37/f9/f2/37f9f27715e7dec6f2f4b7d63ad1af13.gif",
@@ -265,30 +264,31 @@ namespace NadekoBot.Modules.Games
                 "https://cdn.statically.io/img/i.pinimg.com/originals/bb/32/ce/bb32cea39d78161b9afd34604b88e18a.gif"
             };
 
-            Random rand = new Random();
-            int replyString = rand.Next(reply.Length);
-            int imageURL = rand.Next(image.Length);
-            var av = ctx.User.RealAvatarUrl();
-            int option = 0;
+                Random rand = new Random();
+                int replyString = rand.Next(reply.Length);
+                int imageURL = rand.Next(image.Length);
+                var av = ctx.User.RealAvatarUrl();
+                int option = 0;
 
-            if (reply[replyString] == nickOrUser + " rejected your kiss, you fucking die.") // 1 "error" (no kiss) situation to mix things up
-                 { option = 1; }
-            else { option = 2; }
+                if (reply[replyString] == nickOrUser + " rejected your kiss, you fucking die.") // 1 "error" (no kiss) situation to mix things up
+                { option = 1; }
+                else { option = 2; }
 
-            if (option == 2)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithOkColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])
-                                          .WithIconUrl(av.ToString()))
-                    .WithImageUrl(image[imageURL]));
-            }
+                if (option == 2)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])
+                                              .WithIconUrl(av.ToString()))
+                        .WithImageUrl(image[imageURL]));
+                }
 
-            if (option == 1)
-            {
-                await ctx.Channel.EmbedAsync(
-                    new EmbedBuilder().WithErrorColor()
-                    .WithAuthor(eab => eab.WithName(reply[replyString])));
+                if (option == 1)
+                {
+                    await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithErrorColor()
+                        .WithAuthor(eab => eab.WithName(reply[replyString])));
+                }
             }
         }
     }

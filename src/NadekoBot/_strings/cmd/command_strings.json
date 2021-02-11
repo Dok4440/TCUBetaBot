@@ -1141,6 +1141,13 @@
       "{0}slap @Sem"
     ]
   },
+  "kiss": {
+    "Cmd": "kiss smooch",
+    "Desc": "This command purely exists for Dok to fucking smooch Haku",
+    "Usage": [
+      "{0}kiss @Hank"
+    ]
+  },
   "tl": {
     "Cmd": "tl",
     "Desc": "Shows a current trivia leaderboard.",
