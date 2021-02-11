@@ -67,14 +67,53 @@ namespace NadekoBot.Modules.Help
         [NadekoCommand, Usage, Description, Aliases]
         public async Task Modules()
         {
+            var teacupText = "";
+            var teacupCheck = false;
+            if (ctx.Guild.Id == 706492309604401206) { teacupText = " - ₊˚๑ ꒰🍵꒱ Tea Cup"; teacupCheck = true; }
+
+
             var embed = new EmbedBuilder().WithOkColor()
-                .WithFooter(efb => efb.WithText(GetText("modules_footer", Prefix)))
-                .WithTitle(GetText("list_of_modules"))
-                .WithDescription(string.Join("\n",
-                                     _cmds.Modules.GroupBy(m => m.GetTopLevelModule())
-                                         .Where(m => !_perms.BlockedModules.Contains(m.Key.Name.ToLowerInvariant()))
-                                         .Select(m => "• " + m.Key.Name)
-                                         .OrderBy(s => s)));
+                .WithFooter(efb => efb.WithText(GetText("modules_footer", Prefix)));
+
+            Emote star = Emote.Parse("<a:tcustarry:809392809508470805>");
+            Emote star2 = Emote.Parse("<a:tcustarry2:809400070566445056>");
+            Emote cupcake = Emote.Parse("<:tcucupcake:809400108571033661>");
+
+            if (teacupCheck == false)
+            {
+                embed.WithDescription(
+                    $"₊˚๑ {star} Administration\n" +
+                    $"₊˚๑ {star} CustomReactions\n" +
+                    $"₊˚๑ {star} Gambling\n" +
+                    $"₊˚๑ {star} Gamesn\n" +
+                    $"₊˚๑ {star} Help\n" +
+                    $"ʚ﹕₊˚︶꒷꒦꒷︶︶꒷꒦︶‧˚₊⊹\n" +
+                    $"₊˚๑ {star2} Permissions\n" +
+                    $"₊˚๑ {star2} Searches\n" +
+                    $"₊˚๑ {star2} Utilities\n" +
+                    $"₊˚๑ {star2} Xp\n" +
+                    $"₊˚๑ {star2} NSFW")
+                .WithTitle(GetText("list_of_modules", teacupText));
+            }
+            else if (teacupCheck == true)
+            {
+                embed.WithDescription(
+                    $"—・ {cupcake} ┊ **Tea Cup**\n" +
+                    $"₊˚๑ {star} Administration\n" +
+                    $"₊˚๑ {star} CustomReactions\n" +
+                    $"₊˚๑ {star} Gambling\n" +
+                    $"₊˚๑ {star} Games\n" +
+                    $"₊˚๑ {star} Help\n" +
+                    $"ʚ﹕₊˚︶꒷꒦꒷︶︶꒷꒦︶‧˚₊⊹\n" +
+                    $"₊˚๑ {star2} Permissions\n" +
+                    $"₊˚๑ {star2} Searches\n" +
+                    $"₊˚๑ {star2} Utilities\n" +
+                    $"₊˚๑ {star2} Xp\n" +
+                    $"₊˚๑ {star2} NSFW")
+                .WithTitle(GetText("list_of_modules", teacupText));
+            }
+
+
             await ctx.Channel.EmbedAsync(embed).ConfigureAwait(false);
         }
 
