@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace NadekoBot.Modules.TeaCup
 {
         public partial class TeaCup : NadekoTopLevelModule
-    {
+        {
 
         [NadekoCommand, Usage, Description, Aliases]
         [RequireContext(ContextType.Guild)]
@@ -25,9 +25,9 @@ namespace NadekoBot.Modules.TeaCup
             // IF YOURE SELFHOSTING, YOU CAN COMPLETELY REMOVE THIS COMMAND FROM THE CODE
             // CHECK BEFORE COMMIT 122 TO SEE ORIGINAL SOURCE CODE COMMENTS & "EXTRAS"
 
-            if (ctx.Guild.Id != 706492309604401206)  // server check (tea cup)
+            if (ctx.Guild.Id != 706492309604401206)
             {
-                await ReplyConfirmLocalizedAsync("teacup_error").ConfigureAwait(false);
+                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
                 return;
             }
 
@@ -145,7 +145,7 @@ namespace NadekoBot.Modules.TeaCup
 
             if (ctx.Guild.Id != 706492309604401206)  // server check (tea cup)
             {
-                await ReplyConfirmLocalizedAsync("version_error").ConfigureAwait(false);
+                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
                 return;
             }
 
@@ -179,7 +179,7 @@ namespace NadekoBot.Modules.TeaCup
             {
                 roleToAdd = Context.Guild.GetRole(roleTrialAssistant);
             }
-            else // if none of the above check out (which should technically never happen); it gives the regular customer role.)
+            else
             {
                 await ReplyErrorLocalizedAsync("promote_remrole_error").ConfigureAwait(false);
             }
@@ -187,13 +187,13 @@ namespace NadekoBot.Modules.TeaCup
 
             // Remove old role
             var runnerUser2 = (IGuildUser)ctx.User;
-            var roleToRemoveSecretary = Context.Guild.GetRole(795982486244556801); // removes secretary
-            var roleToRemoveCook = Context.Guild.GetRole(706503570622775332); // removes cook
-            var roleToRemoveAssistant = Context.Guild.GetRole(706543395044327545); // removes assistant
-            var roleToRemoveTrialAssistant = Context.Guild.GetRole(706543894288007209); //removes trial assistant
+            var roleToRemoveSecretary = Context.Guild.GetRole(795982486244556801);
+            var roleToRemoveCook = Context.Guild.GetRole(706503570622775332);
+            var roleToRemoveAssistant = Context.Guild.GetRole(706543395044327545);
+            var roleToRemoveTrialAssistant = Context.Guild.GetRole(706543894288007209);
 
             try
-            { // removes all staff role from 1 user.
+            {
                 if (roleCheck.RoleIds.Any(id => id == roleCook))
                 {
                     if (roleToAdd == Context.Guild.GetRole(roleSecretary))
@@ -221,11 +221,13 @@ namespace NadekoBot.Modules.TeaCup
             // Add new role
             var runnerUser1 = (IGuildUser)ctx.User;
             var runner1MaxRolePosition = runnerUser1.GetRoles().Max(x => x.Position);
-            // var roleToAdd = Context.Guild.GetRole(706503570622775332);
 
             if ((ctx.User.Id != ctx.Guild.OwnerId) && runner1MaxRolePosition <= roleToAdd.Position)
+            {
                 await ReplyErrorLocalizedAsync("promote_addrole_error").ConfigureAwait(false);
-            return;
+                return;
+            }
+
             try
             {
                 await targetUser.AddRoleAsync(roleToAdd).ConfigureAwait(false);
