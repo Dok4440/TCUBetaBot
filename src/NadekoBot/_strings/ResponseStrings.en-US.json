@@ -315,6 +315,7 @@
   "gambling_waifu_reset": "Your waifu stats have been reset.",
   "gambling_waifu_reset_fail": "Failed resetting waifu stats. Make sure you have enough currency.",
   "gambling_waifu_reset_confirm": "This will reset your waifu stats",
+  "gambling_waifu_not_tcu": "Sorry bud. TCU is Dok#4440's.",
   "gambling_cost": "This action will cost you {0}.",
   "games_8ball": "8ball",
   "games_acrophobia": "Acrophobia",
