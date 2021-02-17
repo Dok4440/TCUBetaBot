@@ -298,11 +298,11 @@ namespace NadekoBot.Modules.Administration
 
             [NadekoCommand, Usage, Description, Aliases]
             [OwnerOnly]
-            public async Task Die([Leftover] string msg = null)
+            public async Task Die([Leftover] string msg = "")
             {
                 try
                 {
-                    await ReplyConfirmLocalizedAsync("shutting_down", msg.ToString()).ConfigureAwait(false);
+                    await ReplyConfirmLocalizedAsync("shutting_down", msg.ToString()).ConfigureAwait(false); // fixed error on shutdown without Leftover param
                 }
                 catch
                 {
@@ -495,6 +495,27 @@ namespace NadekoBot.Modules.Administration
             {
                 _service.ReloadBotConfig();
                 await ReplyConfirmLocalizedAsync("bot_config_reloaded").ConfigureAwait(false);
+            }
+
+            [NadekoCommand, Usage, Description, Aliases]
+            [OwnerOnly]
+            public async Task eval(string message)
+            {
+                try
+                {
+                    Evaluate("message");
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    _log.Info(ex);
+                }
+            }
+
+            static Double Evaluate(String expression)
+            {
+                System.Data.DataTable table = new System.Data.DataTable();
+                return Convert.ToDouble(table.Compute(expression, String.Empty));
             }
 
             private static UserStatus SettableUserStatusToUserStatus(SettableUserStatus sus)
