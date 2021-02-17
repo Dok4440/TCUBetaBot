@@ -305,7 +305,7 @@ namespace NadekoBot.Modules.Administration
                     if (msg == null)
                     {
                         string msg_no_param = "Not pushing to GitLab, `git stash`.";
-                        await ConfirmLocalizedAsync("shutting_down_no_param", msg_no_param.ToString()).ConfigureAwait(false); // stash command?
+                        await ConfirmLocalizedAsync("shutting_down", msg_no_param.ToString()).ConfigureAwait(false); // stash command?
                         return;
                     }
                     await ConfirmLocalizedAsync("shutting_down", msg.ToString()).ConfigureAwait(false);
