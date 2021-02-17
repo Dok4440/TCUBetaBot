@@ -51,13 +51,7 @@ namespace NadekoBot.Modules.Gambling
                     return;
                 }
 
-                if (target.Id == 730786942416978021 && ctx.User.Id != 387984284734062592)
-                {
-                    await ErrorLocalizedAsync("waifu_not_tcu");
-                    return;
-                }
-
-                if (target.Id == 790668442604011522 && ctx.User.Id != 387984284734062592)
+                if ((target.Id == 730786942416978021 || target.Id == 790668442604011522) && ctx.User.Id != 387984284734062592)
                 {
                     await ErrorLocalizedAsync("waifu_not_tcu");
                     return;
