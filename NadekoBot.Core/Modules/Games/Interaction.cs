@@ -13,10 +13,6 @@ using System.Threading.Tasks;
 
 namespace NadekoBot.Modules.Games
 {
-    /* more games
-    - Shiritori
-    - Simple RPG adventure
-    */
     public partial class Games
     {
         [Group]
@@ -227,6 +223,35 @@ namespace NadekoBot.Modules.Games
                     return;
                 }
 
+                if ((ctx.User.Id == 387984284734062592 && usr.Id == 730329913688850522) 
+                    || (ctx.User.Id == 730329913688850522 && usr.Id == 387984284734062592))
+                {
+                    var nickOrUser1 = usr.Nickname;
+                    if (usr.Nickname == null) { nickOrUser1 = usr.Username; }
+
+                    string[] reply1 =
+                    {
+                        "FUCKING LOGITECH",
+                        "sex brain cells (pls idk science)",
+                        "i want to be nsfw with you",
+                        "i am i'm just speachless carrot....",
+                        "You better Shut yo skin tone chicken bone google chrome no home flip phone disowned ice cream cone garden gnome extra chromosome metronome dimmadome genome full blown monochrome student loan indiana jones overgrown flintstone x and y hormone friend zoned sylvester stallone sierra leone autozone professionally seen silver patrone head ass tf up",
+                        "KIMBOLOLOLOL",
+                    };
+
+                    Random rand1 = new Random();
+                    int replyString1 = rand1.Next(reply1.Length);
+
+                    var av1 = ctx.User.RealAvatarUrl();
+
+                    await ctx.Channel.EmbedAsync(
+                          new EmbedBuilder().WithOkColor()
+                            .WithAuthor(eab => eab.WithName(reply1[replyString1])
+                                    .WithIconUrl(av1.ToString()))
+                            .WithImageUrl("https://i.imgur.com/FLD7atw.gif"));
+                    return;
+                }
+
                 var nickOrUser = usr.Nickname;
                 if (usr.Nickname == null) { nickOrUser = usr.Username; }
 
@@ -261,7 +286,7 @@ namespace NadekoBot.Modules.Games
                 "https://i.pinimg.com/originals/35/2d/cc/352dccdf2450e0fe1ee4fce239e372a9.gif",
                 "https://media.tenor.com/images/97196e32b62715fca06a151a8e2bd1cd/tenor.gif",
                 "https://media.tenor.com/images/f773c40896a968633b613f5cafa08de2/tenor.gif",
-                "https://cdn.statically.io/img/i.pinimg.com/originals/bb/32/ce/bb32cea39d78161b9afd34604b88e18a.gif"
+                "https://cdn.statically.io/img/i.pinimg.com/originals/bb/32/ce/bb32cea39d78161b9afd34604b88e18a.gif",
             };
 
                 Random rand = new Random();
