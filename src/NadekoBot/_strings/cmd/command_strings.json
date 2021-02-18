@@ -366,6 +366,13 @@
       "{0}promote @Dok"
     ]
   },
+  "confess": {
+    "Cmd": "confess",
+    "Desc": "Confess your deepest secrets. Currently only works in TCU's Main Server.",
+    "Usage": [
+      "{0}confess I have a crush on Obama ^°^"
+    ]
+  },
   "setrole": {
     "Cmd": "setrole sr giverole",
     "Desc": "Gives a role to a user. The role you specify has to be lower in the role hierarchy than your highest role.",

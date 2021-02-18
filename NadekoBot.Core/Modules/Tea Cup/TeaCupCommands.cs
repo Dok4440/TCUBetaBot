@@ -12,8 +12,8 @@ using System.Threading.Tasks;
 
 namespace NadekoBot.Modules.TeaCup
 {
-        public partial class TeaCup : NadekoTopLevelModule
-        {
+    public partial class TeaCup : NadekoTopLevelModule
+    {
 
         [NadekoCommand, Usage, Description, Aliases]
         [RequireContext(ContextType.Guild)]
@@ -238,6 +238,62 @@ namespace NadekoBot.Modules.TeaCup
             {
                 await ReplyErrorLocalizedAsync("promote_addrole_error").ConfigureAwait(false);
                 _log.Info(ex);
+            }
+        }
+
+        // confess command
+        [NadekoCommand, Usage, Description, Aliases]
+        [RequireContext(ContextType.Guild)]
+        [BotPerm(GuildPerm.ManageMessages)]
+        public async Task Confess([Leftover] string confession=null)
+        {
+            if (ctx.Guild.Id != 706492309604401206)  // server check (tea cup)
+            {
+                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
+                return;
+            }
+
+            if (ctx.Channel.Id != 812023722856415248)
+            {
+                await ctx.Message.DeleteAsync();
+                await ErrorLocalizedAsync("confess_wrong_channel").ConfigureAwait(false);
+                return;
+            }
+
+            if (confession == null || confession == "")
+            {
+                await ctx.Message.DeleteAsync();
+                await ErrorLocalizedAsync("confess_empty_message").ConfigureAwait(false);
+                return;
+            }
+
+            try
+            {
+                await ctx.Message.DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                _log.Warn(ex);
+                await ErrorLocalizedAsync("confess_couldnt_delete").ConfigureAwait(false);
+            }
+
+            if (confession.StartsWith("\"") && confession.EndsWith("\""))
+            {
+                await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName("Anonymous Confession")
+                            .WithIconUrl("https://i.imgur.com/LMgtnSL.png"))
+                        .WithDescription(confession.ToString())
+                        .WithFooter("Type .confess <message> to confess.")).ConfigureAwait(false);
+            }
+            else
+            {
+                await ctx.Channel.EmbedAsync(
+                        new EmbedBuilder().WithOkColor()
+                        .WithAuthor(eab => eab.WithName("Anonymous Confession")
+                            .WithIconUrl("https://i.imgur.com/LMgtnSL.png"))
+                        .WithDescription("\"" + confession.ToString() + "\"")
+                        .WithFooter("Type .confess <message> to confess.")).ConfigureAwait(false);
             }
         }
     }
