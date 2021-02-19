@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 using NadekoBot.Common;
 using NadekoBot.Common.Attributes;
 using NadekoBot.Core.Services;
@@ -14,6 +15,15 @@ namespace NadekoBot.Modules.TeaCup
 {
     public partial class TeaCup : NadekoTopLevelModule
     {
+        private readonly DiscordSocketClient _client;
+        private readonly NadekoBot _bot;
+
+        public TeaCup(DiscordSocketClient client, NadekoBot bot)
+        {
+            _client = client;
+            _bot = bot;
+        }
+
 
         [NadekoCommand, Usage, Description, Aliases]
         [RequireContext(ContextType.Guild)]
@@ -27,7 +37,7 @@ namespace NadekoBot.Modules.TeaCup
 
             if (ctx.Guild.Id != 706492309604401206)
             {
-                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
+                await ReplyErrorLocalizedAsync("server_error").ConfigureAwait(false);
                 return;
             }
 
@@ -145,7 +155,7 @@ namespace NadekoBot.Modules.TeaCup
 
             if (ctx.Guild.Id != 706492309604401206)  // server check (tea cup)
             {
-                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
+                await ReplyErrorLocalizedAsync("server_error").ConfigureAwait(false);
                 return;
             }
 
@@ -243,20 +253,39 @@ namespace NadekoBot.Modules.TeaCup
 
         // confess command
         [NadekoCommand, Usage, Description, Aliases]
-        [RequireContext(ContextType.Guild)]
-        [BotPerm(GuildPerm.ManageMessages)]
+        [RequireContext(ContextType.DM)]
+        // [BotPerm(GuildPerm.ManageMessages)]
         public async Task Confess([Leftover] string confession=null)
         {
-            if (ctx.Guild.Id != 706492309604401206)  // server check (tea cup)
-            {
-                await ReplyConfirmLocalizedAsync("server_error").ConfigureAwait(false);
-                return;
-            }
+            // THIS COMMAND DOES NOT WORK IN ANY OTHER SERVERS THAN TEA CUP
+            // IF YOURE SELFHOSTING, YOU CAN COMPLETELY REMOVE THIS COMMAND FOR THE CODE
 
-            if (ctx.Channel.Id != 812023722856415248)
+            var server = _client.Guilds.FirstOrDefault(s => s.Id == 706492309604401206);
+            var uid = ctx.User.Id;
+            var user = server.Users.FirstOrDefault(u => u.Id == uid);
+
+            string[] icon = // will continue to update this list whenever i'm in the mood.
+{
+            "https://i.imgur.com/79XfsbS.png",
+            "https://i.imgur.com/yldY7sh.png",
+            "https://i.imgur.com/iKGgeKz.png",
+            "https://i.imgur.com/wFsgSnr.png",
+            "https://i.imgur.com/hSauh7K.png",
+            "https://i.imgur.com/OzxRYsD.png"
+          };
+            Random rand = new Random();
+            int index = rand.Next(icon.Length);
+
+            if (user == null)
             {
-                await ctx.Message.DeleteAsync();
-                await ErrorLocalizedAsync("confess_wrong_channel").ConfigureAwait(false);
+                var embed1 = new EmbedBuilder().WithErrorColor()
+                    .WithAuthor(eab => eab.WithName("Server Error")
+                    .WithIconUrl(icon[index]))
+                    .WithDescription(GetText("server_error"))
+                    .WithFooter("You can't use this command :/");
+
+                var DMCh1 = await Context.User.GetOrCreateDMChannelAsync().ConfigureAwait(false);
+                await DMCh1.EmbedAsync(embed1).ConfigureAwait(false);
                 return;
             }
 
@@ -267,34 +296,32 @@ namespace NadekoBot.Modules.TeaCup
                 return;
             }
 
-            try
-            {
-                await ctx.Message.DeleteAsync();
-            }
-            catch (Exception ex)
-            {
-                _log.Warn(ex);
-                await ErrorLocalizedAsync("confess_couldnt_delete").ConfigureAwait(false);
-            }
+            var embed = new EmbedBuilder().WithOkColor()
+                    .WithAuthor(eab => eab.WithName("Anonymous Confession")
+                                .WithIconUrl(icon[index]))
+                            .WithFooter("Type .confess <message> in my DMs to confess.");
+
 
             if (confession.StartsWith("\"") && confession.EndsWith("\""))
             {
-                await ctx.Channel.EmbedAsync(
-                        new EmbedBuilder().WithOkColor()
-                        .WithAuthor(eab => eab.WithName("Anonymous Confession")
-                            .WithIconUrl("https://i.imgur.com/LMgtnSL.png"))
-                        .WithDescription(confession.ToString())
-                        .WithFooter("Type .confess <message> to confess.")).ConfigureAwait(false);
+                embed.WithDescription(confession.ToString());
             }
             else
             {
-                await ctx.Channel.EmbedAsync(
-                        new EmbedBuilder().WithOkColor()
-                        .WithAuthor(eab => eab.WithName("Anonymous Confession")
-                            .WithIconUrl("https://i.imgur.com/LMgtnSL.png"))
-                        .WithDescription("\"" + confession.ToString() + "\"")
-                        .WithFooter("Type .confess <message> to confess.")).ConfigureAwait(false);
+                embed.WithDescription("\"" + confession.ToString() + "\"");
             }
+
+            var ch = server.TextChannels.FirstOrDefault(c => c.Id == 812023722856415248);
+            await ch.EmbedAsync(embed).ConfigureAwait(false);
+
+            var embed2 = new EmbedBuilder().WithOkColor()
+                .WithAuthor(eab => eab.WithName("Confessions ~ ─・୨🍵੭・Tea Cup ꒷꒦")
+                .WithIconUrl(icon[index]))
+                .WithDescription(GetText("confess_sent"))
+                .WithFooter("Pro privacy tip: delete your confession in this DM.");
+
+            var DMCh2 = await Context.User.GetOrCreateDMChannelAsync().ConfigureAwait(false);
+            await DMCh2.EmbedAsync(embed2).ConfigureAwait(false);
         }
     }
 }
