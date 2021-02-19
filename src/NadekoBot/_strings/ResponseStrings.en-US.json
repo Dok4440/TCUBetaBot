@@ -1034,10 +1034,10 @@
   "teacup_promote_addrole_error": "Something went wrong adding the targetted user's roles. Make sure both you and TCU have the required permissions.",
   "teacup_promote_hierarchy_error": "You can't use this command on users with a role higher or equal to yours in the role hierarchy.",
 
-  "teacup_confess_wrong_channel": "Please use this command in <#812023722856415248>. Your message & username won't be mentioned or logged for discretion.",
+  "teacup_confess_dm": "Please use this command in my DMs. Your message & username won't be mentioned or logged for discretion.",
   "teacup_confess_empty_message": "Please provide a message to use the `.confess` command. Your username won't be mentioned or logged for discretion.",
   "teacup_confess_couldnt_delete": "Your message couldn't be deleted. Please delete it manually. Your username won't be mentioned or logged for discretion.",
-  "teacup_confess_sent": " Your anonymous confession was successfully posted to ─・୨<:tea:812287338650664970>੭・Tea Cup ꒷꒦!",
+  "teacup_confess_sent": "Your anonymous confession was successfully posted to ─・୨<:tea:812287338650664970>੭・Tea Cup ꒷꒦!",
 
   "gambling_waifu_not_tcu": "Sorry bud. TCU is Dok#4440's.",
 

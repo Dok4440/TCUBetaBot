@@ -254,7 +254,7 @@ namespace NadekoBot.Modules.TeaCup
         // confess command
         [NadekoCommand, Usage, Description, Aliases]
         [RequireContext(ContextType.DM)]
-        // [BotPerm(GuildPerm.ManageMessages)]
+        [Priority(1)]
         public async Task Confess([Leftover] string confession=null)
         {
             // THIS COMMAND DOES NOT WORK IN ANY OTHER SERVERS THAN TEA CUP
@@ -322,6 +322,25 @@ namespace NadekoBot.Modules.TeaCup
 
             var DMCh2 = await Context.User.GetOrCreateDMChannelAsync().ConfigureAwait(false);
             await DMCh2.EmbedAsync(embed2).ConfigureAwait(false);
+        }
+
+        [NadekoCommand, Usage, Description, Aliases]
+        [RequireContext(ContextType.Guild)]
+        [Priority(0)]
+        public async Task Confess(string param = null, [Leftover] string confession = null) // extra string (little workaround, works for now)
+        { 
+
+            if (ctx.Guild.Id != 706492309604401206)
+            {
+                await ReplyErrorLocalizedAsync("server_error").ConfigureAwait(false);
+                return;
+            }
+            else if (ctx.Guild.Id == 706492309604401206)
+            {
+                await ctx.Message.DeleteAsync();
+                await ErrorLocalizedAsync("confess_dm").ConfigureAwait(false);
+                return;
+            }
         }
     }
 }
