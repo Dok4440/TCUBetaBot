@@ -291,8 +291,12 @@ namespace NadekoBot.Modules.TeaCup
 
             if (confession == null || confession == "")
             {
-                await ctx.Message.DeleteAsync();
                 await ErrorLocalizedAsync("confess_empty_message").ConfigureAwait(false);
+                return;
+            }
+            if (confession.Contains("nigg") || confession.Contains("n i g")) // GitLab if you see this, please don't ban me i swear i'm just too lazy to get this from a database
+            {
+                await ErrorLocalizedAsync("confess_forbidden").ConfigureAwait(false);
                 return;
             }
 
