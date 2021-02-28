@@ -1,5 +1,4 @@
-﻿#if !GLOBAL_NADEKO
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using NadekoBot.Common;
 using NadekoBot.Common.Attributes;
@@ -7,18 +6,18 @@ using NadekoBot.Common.TypeReaders.Models;
 using NadekoBot.Core.Services.Database.Models;
 using NadekoBot.Extensions;
 using NadekoBot.Modules.Administration.Services;
+using NadekoBot.Modules.Logging.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static NadekoBot.Modules.Administration.Services.LogCommandService;
+using static NadekoBot.Modules.Logging.Services.LogCommandService;
 
 namespace NadekoBot.Modules.Administration
 {
-    public partial class Administration
+    public partial class LoggingCommands
     {
         [Group]
-        [NoPublicBot]
-        public class LogCommands : NadekoSubmodule<LogCommandService>
+        public class Logging : NadekoSubmodule<LogCommandService>
         {
             public enum EnableDisable
             {
@@ -131,4 +130,3 @@ namespace NadekoBot.Modules.Administration
         }
     }
 }
-#endif

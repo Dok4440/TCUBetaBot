@@ -85,12 +85,13 @@ namespace NadekoBot.Modules.Help
                     $"₊˚๑ {star} Administration\n" +
                     $"₊˚๑ {star} CustomReactions\n" +
                     $"₊˚๑ {star} Gambling\n" +
-                    $"₊˚๑ {star} Gamesn\n" +
+                    $"₊˚๑ {star} Games\n" +
                     $"₊˚๑ {star} Help\n" +
                     $"ʚ﹕₊˚︶꒷꒦꒷︶︶꒷꒦︶‧˚₊⊹\n" +
                     $"₊˚๑ {star2} Permissions\n" +
                     $"₊˚๑ {star2} Searches\n" +
                     $"₊˚๑ {star2} Utilities\n" +
+                    $"₊˚๑ {star2} Logging\n" +
                     $"₊˚๑ {star2} Xp\n" +
                     $"₊˚๑ {star2} NSFW")
                 .WithTitle(GetText("list_of_modules", teacupText));
@@ -108,6 +109,7 @@ namespace NadekoBot.Modules.Help
                     $"₊˚๑ {star2} Permissions\n" +
                     $"₊˚๑ {star2} Searches\n" +
                     $"₊˚๑ {star2} Utilities\n" +
+                    $"₊˚๑ {star2} Logging\n" +
                     $"₊˚๑ {star2} Xp\n" +
                     $"₊˚๑ {star2} NSFW")
                 .WithTitle(GetText("list_of_modules", teacupText));

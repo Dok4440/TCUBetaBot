@@ -1,5 +1,4 @@
-﻿#if !GLOBAL_NADEKO
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +12,10 @@ using NadekoBot.Core.Services.Database.Models;
 using NadekoBot.Core.Services.Impl;
 using NadekoBot.Extensions;
 using NadekoBot.Modules.Administration.Common;
+using NadekoBot.Modules.Administration.Services;
 using NLog;
 
-namespace NadekoBot.Modules.Administration.Services
+namespace NadekoBot.Modules.Logging.Services
 {
     public class LogCommandService : INService
     {
@@ -1235,4 +1235,3 @@ namespace NadekoBot.Modules.Administration.Services
         }
     }
 }
-#endif
