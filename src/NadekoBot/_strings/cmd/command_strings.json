@@ -432,7 +432,7 @@
     ]
   },
   "ban": {
-    "Cmd": "ban b",
+    "Cmd": "ban b py permayeet",
     "Desc": "Bans a user by ID or name with an optional message. You can specify a time string before the user name to ban the user temporarily.",
     "Usage": [
       "{0}b \"@some Guy\" Your behaviour is toxic.",
@@ -440,7 +440,7 @@
     ]
   },
   "softban": {
-    "Cmd": "softban sb kick k",
+    "Cmd": "softban sb kick k yeet",
     "Desc": "Bans and then unbans a user by ID or name with an optional message. There is no kick command in TCU, so it's aliased as softban.",
     "Usage": [
       "{0}sb \"@some Guy\" Your behaviour is toxic."
@@ -2792,7 +2792,7 @@
     ]
   },
   "unban": {
-    "Cmd": "unban",
+    "Cmd": "unban pardon unyeet uny",
     "Desc": "Unbans a user with the provided user#discrim or id.",
     "Usage": [
       "{0}unban kwoth#1234",
