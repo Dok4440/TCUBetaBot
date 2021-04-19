@@ -1,8 +1,9 @@
-﻿using Discord;
+using Discord;
 using Discord.Commands;
 using NadekoBot.Common.Attributes;
 using NadekoBot.Core.Modules.Searches.Services;
 using NadekoBot.Extensions;
+using System;
 using System.Threading.Tasks;
 
 namespace NadekoBot.Modules.Searches
@@ -40,18 +41,23 @@ namespace NadekoBot.Modules.Searches
                     return;
                 }
 
+                var crypto_Perfect_Change_7d_1 = crypto.Quote.Usd.Percent_Change_7d.Substring(0,6);
+                var crypto_Perfect_Change_24h_1 = crypto.Quote.Usd.Percent_Change_24h.Substring(0, 6);
 
                 await ctx.Channel.EmbedAsync(new EmbedBuilder()
                     .WithOkColor()
                     .WithTitle($"{crypto.Name} ({crypto.Symbol})")
                     .WithUrl($"https://coinmarketcap.com/currencies/{crypto.Slug}/")
                     .WithThumbnailUrl($"https://s2.coinmarketcap.com/static/img/coins/128x128/{crypto.Id}.png")
-                    .AddField(GetText("market_cap"), $"${crypto.Quote.Usd.Market_Cap:n0}", true)
-                    .AddField(GetText("price"), $"${crypto.Quote.Usd.Price}", true)
-                    .AddField(GetText("volume_24h"), $"${crypto.Quote.Usd.Volume_24h:n0}", true)
-                    .AddField(GetText("change_7d_24h"), $"{crypto.Quote.Usd.Percent_Change_7d}% / {crypto.Quote.Usd.Percent_Change_24h}%", true)
-                    .WithImageUrl($"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/{crypto.Id}.png")).ConfigureAwait(false);
+                    .AddField(GetText("market_cap"), $"${crypto.Quote.Usd.Market_Cap:n0}", false)
+                    .AddField(GetText("price"), $"${Math.Round(crypto.Quote.Usd.Price, 2)}", false)
+                    .AddField(GetText("change_7d_24h"), $"{crypto_Perfect_Change_7d_1}% / {crypto_Perfect_Change_24h_1}%", false));
+                    
+                    //(GetText("volume_24h"), $"${crypto.Quote.Usd.Volume_24h:n0}", false)
+                    //.AddField(GetText("change_7d_24h"), $"{Math.Round(Convert.ToDouble(crypto.Quote.Usd.Percent_Change_7d))}% / {Math.Round(Convert.ToDouble(crypto.Quote.Usd.Percent_Change_24h))}%", false)
+                    /*.WithImageUrl($"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/{crypto.Id}.png"))*/
             }
         }
     }
 }
+
