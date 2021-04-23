@@ -1,4 +1,4 @@
-﻿using Discord;
+using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using System;
@@ -145,5 +145,8 @@ namespace NadekoBot.Extensions
                 // ignored
             }
         }
+
+        public static Task OkAsync(this ICommandContext ctx)
+            => ctx.Message.AddReactionAsync(new Emoji("✅"));
     }
 }
