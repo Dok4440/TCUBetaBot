@@ -1,4 +1,4 @@
-﻿using Discord;
+using Discord;
 using Discord.Commands;
 using NadekoBot.Common;
 using NadekoBot.Common.Attributes;
@@ -239,6 +239,7 @@ namespace NadekoBot.Modules.Help
                 {
                     var (plainText, helpEmbed) = await GetHelpStringEmbed();
                     await ch.EmbedAsync(helpEmbed, msg: plainText ?? "").ConfigureAwait(false);
+                    await ctx.OkAsync();
                 }
                 catch (Exception)
                 {
