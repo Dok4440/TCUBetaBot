@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using System;
@@ -13,6 +13,8 @@ using NadekoBot.Common;
 using NLog;
 using CommandLine;
 using System.Collections.Generic;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace NadekoBot.Modules.Help.Services
 {
@@ -72,25 +74,27 @@ namespace NadekoBot.Modules.Help.Services
                     string.Join("\n", reqs));
             }
 
-            string[] thumbnail = // will continue to update this list whenever i'm in the mood.
-          {
-            "https://i.imgur.com/79XfsbS.png",
-            "https://i.imgur.com/yldY7sh.png",
-            "https://i.imgur.com/iKGgeKz.png",
-            "https://i.imgur.com/wFsgSnr.png",
-            "https://i.imgur.com/hSauh7K.png",
-            "https://i.imgur.com/OzxRYsD.png"
-          };
-          Random rand = new Random();
-          int index = rand.Next(thumbnail.Length);
+            var json = new WebClient().DownloadString("https://gitlab.com/Dok4440/TCUBetaBot/-/raw/develop/TCURawJsons/HelpGifs.json");
+            string[] helpGifs = JsonConvert.DeserializeObject<string[]>(json);
 
-            em
-                .AddField(fb => fb.WithName(GetText("usage", guild))
+            Random rand = new Random();
+            int index = rand.Next(helpGifs.Length);
+
+             em.AddField(fb => fb.WithName(GetText("usage", guild))
                     .WithValue(com.RealRemarks(prefix))
                     .WithIsInline(false))
-                .WithThumbnailUrl(thumbnail[index])
-                .WithFooter(efb => efb.WithText(GetText("module", guild, com.Module.GetTopLevelModule().Name)))
+                .WithThumbnailUrl(helpGifs[index])
                 .WithColor(NadekoBot.OkColor);
+
+            int credit = rand.Next(1, 5);
+            if (credit == 1)
+            {
+                em.WithFooter(efb => efb.WithText(GetText("module", guild, com.Module.GetTopLevelModule().Name) + " | Art by JuicyBblue :D"));
+            }
+            else
+            {
+                em.WithFooter(efb => efb.WithText(GetText("module", guild, com.Module.GetTopLevelModule().Name)));
+            }
 
             var opt = ((NadekoOptionsAttribute)com.Attributes.FirstOrDefault(x => x is NadekoOptionsAttribute))?.OptionType;
             if (opt != null)
